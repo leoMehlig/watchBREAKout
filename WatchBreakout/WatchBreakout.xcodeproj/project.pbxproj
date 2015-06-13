@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		409486341B2CB9B7002A210D /* BallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409486331B2CB9B7002A210D /* BallController.swift */; };
 		7F79403A1B2CAD8300490672 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7940391B2CAD8300490672 /* AppDelegate.swift */; };
 		7F79403C1B2CAD8300490672 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F79403B1B2CAD8300490672 /* ViewController.swift */; };
 		7F79403F1B2CAD8300490672 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F79403D1B2CAD8300490672 /* Main.storyboard */; };
@@ -82,6 +83,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		409486331B2CB9B7002A210D /* BallController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BallController.swift; sourceTree = "<group>"; };
 		7F7940361B2CAD8300490672 /* WatchBreakout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchBreakout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F7940391B2CAD8300490672 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7F79403B1B2CAD8300490672 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				7F7940741B2CAD8400490672 /* ExtensionDelegate.swift */,
 				7F7940761B2CAD8400490672 /* GlanceController.swift */,
 				7F7940781B2CAD8400490672 /* ComplicationController.swift */,
+				409486331B2CB9B7002A210D /* BallController.swift */,
 				7F79407A1B2CAD8400490672 /* Assets.xcassets */,
 				7F79407C1B2CAD8400490672 /* Info.plist */,
 			);
@@ -436,6 +439,7 @@
 			files = (
 				7F7940751B2CAD8400490672 /* ExtensionDelegate.swift in Sources */,
 				7F7940791B2CAD8400490672 /* ComplicationController.swift in Sources */,
+				409486341B2CB9B7002A210D /* BallController.swift in Sources */,
 				7F7940731B2CAD8400490672 /* InterfaceController.swift in Sources */,
 				7F7940771B2CAD8400490672 /* GlanceController.swift in Sources */,
 			);
@@ -732,6 +736,7 @@
 				7F7940811B2CAD8400490672 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7F7940831B2CAD8400490672 /* Build configuration list for PBXNativeTarget "WatchBreakout WatchKit App" */ = {
 			isa = XCConfigurationList;
@@ -740,6 +745,7 @@
 				7F7940851B2CAD8400490672 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7F7940871B2CAD8400490672 /* Build configuration list for PBXNativeTarget "WatchBreakout" */ = {
 			isa = XCConfigurationList;
@@ -748,6 +754,7 @@
 				7F7940891B2CAD8400490672 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7F79408A1B2CAD8400490672 /* Build configuration list for PBXNativeTarget "WatchBreakoutTests" */ = {
 			isa = XCConfigurationList;
@@ -756,6 +763,7 @@
 				7F79408C1B2CAD8400490672 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7F79408D1B2CAD8400490672 /* Build configuration list for PBXNativeTarget "WatchBreakoutUITests" */ = {
 			isa = XCConfigurationList;
@@ -764,6 +772,7 @@
 				7F79408F1B2CAD8400490672 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

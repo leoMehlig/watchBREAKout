@@ -16,7 +16,9 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet var picker: WKInterfacePicker!
     var items = [WKPickerItem]()
     @IBOutlet var paddleGroup: WKInterfaceGroup!
+    @IBOutlet var ball: WKInterfaceImage!
     
+    @IBOutlet var ballGroup: WKInterfaceGroup!
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         var screenWidth = Int(WKInterfaceDevice.currentDevice().screenBounds.size.width)
@@ -36,6 +38,11 @@ class InterfaceController: WKInterfaceController {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         picker.focusForCrownInput()
+        
+        
+        let controller = BallController(gameRect: CGRect(origin: CGPointZero, size: CGSize(width: 100, height: 100)), ball: ball, ballSize: CGSize(width: 20, height: 20), group: ballGroup)
+        controller.ballSpeed = 20 / 1000
+        controller.ballDirection = Float(0.5)
 
     }
 
