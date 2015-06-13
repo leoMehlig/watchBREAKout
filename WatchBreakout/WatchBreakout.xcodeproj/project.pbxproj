@@ -24,6 +24,7 @@
 		7F7940771B2CAD8400490672 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7940761B2CAD8400490672 /* GlanceController.swift */; };
 		7F7940791B2CAD8400490672 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7940781B2CAD8400490672 /* ComplicationController.swift */; };
 		7F79407B1B2CAD8400490672 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F79407A1B2CAD8400490672 /* Assets.xcassets */; };
+		7FFB21231B2CD262003E03AA /* WBUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFB21221B2CD262003E03AA /* WBUserDefaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		7F7940781B2CAD8400490672 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		7F79407A1B2CAD8400490672 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F79407C1B2CAD8400490672 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7FFB21221B2CD262003E03AA /* WBUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBUserDefaults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +217,7 @@
 				7F7940761B2CAD8400490672 /* GlanceController.swift */,
 				7F7940781B2CAD8400490672 /* ComplicationController.swift */,
 				409486331B2CB9B7002A210D /* BallController.swift */,
+				7FFB21221B2CD262003E03AA /* WBUserDefaults.swift */,
 				7F79407A1B2CAD8400490672 /* Assets.xcassets */,
 				7F79407C1B2CAD8400490672 /* Info.plist */,
 			);
@@ -440,6 +443,7 @@
 				7F7940751B2CAD8400490672 /* ExtensionDelegate.swift in Sources */,
 				7F7940791B2CAD8400490672 /* ComplicationController.swift in Sources */,
 				409486341B2CB9B7002A210D /* BallController.swift in Sources */,
+				7FFB21231B2CD262003E03AA /* WBUserDefaults.swift in Sources */,
 				7F7940731B2CAD8400490672 /* InterfaceController.swift in Sources */,
 				7F7940771B2CAD8400490672 /* GlanceController.swift in Sources */,
 			);
