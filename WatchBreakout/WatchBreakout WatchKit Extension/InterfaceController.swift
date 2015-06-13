@@ -83,7 +83,6 @@ class InterfaceController: WKInterfaceController {
         brick18.setBackgroundImage(randomBrickImage())
         brick19.setBackgroundImage(randomBrickImage())
         brick20.setBackgroundImage(randomBrickImage())
-        let image = GlanceController.creatBreakoutImageForSize(CGSize(width: 130, height: 100))
 
     }
 
