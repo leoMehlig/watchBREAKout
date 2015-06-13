@@ -59,6 +59,7 @@ class GlanceController: WKInterfaceController {
                 }
             }
         }
+        
       
         
         let image =  UIGraphicsGetImageFromCurrentImageContext();

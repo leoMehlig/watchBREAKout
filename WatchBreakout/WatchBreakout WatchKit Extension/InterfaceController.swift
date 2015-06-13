@@ -91,11 +91,13 @@ class InterfaceController: WKInterfaceController {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         picker.focusForCrownInput()
+        var scale = WKInterfaceDevice.currentDevice().screenScale
+        var screenWidth = Int(WKInterfaceDevice.currentDevice().screenBounds.size.width * scale)
+
         
-        
-//        let controller = BallController(gameRect: CGRect(origin: CGPointZero, size: CGSize(width: 100, height: 100)), ball: ball, ballSize: CGSize(width: 20, height: 20), group: ballGroup)
-//        controller.ballSpeed = 20 / 1000
-//        controller.ballDirection = Float(0.5)
+        let controller = BallController(gameRect: CGRect(origin: CGPointZero, size: CGSize(width: 500, height: 40)), ball: ball, ballSize: CGSize(width: 20, height: 20), group: ballGroup)
+        controller.ballSpeed = 20 / 500
+        controller.ballDirection = Float(0.5)
 
     }
 
