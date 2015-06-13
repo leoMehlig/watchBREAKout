@@ -18,18 +18,35 @@ class GlanceController: WKInterfaceController {
         // Configure interface objects here.
     }
 
-    @IBOutlet var highscoreLabel: WKInterfaceLabel!
-    @IBOutlet var glanceImage: WKInterfaceImage!
+    @IBOutlet var highscoreLabel: WKInterfaceLabel! {
+        didSet {
+            highscoreLabel.setText(String(WBUserDefaults.highscore))
+        }
+    }
+    @IBOutlet var glanceImage: WKInterfaceImage! {
+        didSet {
+            
+        }
+    }
     @IBOutlet var levelLabel: WKInterfaceLabel!
     @IBOutlet var footerLabel: WKInterfaceLabel!
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        
     }
 
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
+    }
+    
+    
+    func creatBreakoutImageForSize(size: CGSize) -> UIImage {
+        let bricksStatus = WBUserDefaults.bricksStatusAry
+        let brickHeight = CGFloat(bricksStatus.count)
+        let brickWidth = CGFloat(bricksStatus.first?.count ?? 0)
+        return UIImage()
     }
 
 }
