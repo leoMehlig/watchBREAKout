@@ -8,7 +8,7 @@
 
 import WatchKit
 import Foundation
-
+import CoreGraphics
 
 class GlanceController: WKInterfaceController {
 
@@ -25,7 +25,7 @@ class GlanceController: WKInterfaceController {
     }
     @IBOutlet var glanceImage: WKInterfaceImage! {
         didSet {
-            
+            glanceImage.setImage(GlanceController.creatBreakoutImageForSize(CGSize(width: 130, height: 100)))
         }
     }
     @IBOutlet var levelLabel: WKInterfaceLabel!
@@ -42,11 +42,31 @@ class GlanceController: WKInterfaceController {
     }
     
     
-    func creatBreakoutImageForSize(size: CGSize) -> UIImage {
+    class func creatBreakoutImageForSize(size: CGSize) -> UIImage {
         let bricksStatus = WBUserDefaults.bricksStatusAry
-        let brickHeight = CGFloat(bricksStatus.count)
-        let brickWidth = CGFloat(bricksStatus.first?.count ?? 0)
-        return UIImage()
+        let brickHeight = (size.height - CGFloat(bricksStatus.count) * 2) / CGFloat(bricksStatus.count)
+        let brickWidth = (size.width - CGFloat(bricksStatus.first?.count ?? 0) * 2) / CGFloat(bricksStatus.first?.count ?? 0)
+        UIGraphicsBeginImageContext(size)
+        for (row, rowAry) in WBUserDefaults.bricksStatusAry.enumerate() {
+            for (column, brick) in rowAry.enumerate() {
+                if brick {
+                    let x = CGFloat(row) * brickWidth + CGFloat(row) * 2
+                    let y = CGFloat(column) * brickHeight + CGFloat(column) * 2
+                    print("\(x), \(y)")
+                    let path = UIBezierPath(rect: CGRect(x: x, y: y, width: brickWidth, height: brickHeight))
+                    UIColor.greenColor().setFill()
+                    path.fill()
+                }
+            }
+        }
+      
+        
+        let image =  UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+
+        
+        return image
+        
     }
 
 }
