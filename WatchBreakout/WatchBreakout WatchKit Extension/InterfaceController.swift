@@ -39,7 +39,9 @@ class InterfaceController: WKInterfaceController {
         super.willActivate()
         picker.focusForCrownInput()
         
-
+        let controller = BallController(gameRect: CGRect(origin: CGPointZero, size: CGSize(width: 100, height: 100)), ball: ball, ballSize: CGSize(width: 20, height: 20), group: ballGroup)
+        controller.ballDirection = 2.5
+        controller.ballSpeed = 60 / 1000
     }
 
     override func didDeactivate() {

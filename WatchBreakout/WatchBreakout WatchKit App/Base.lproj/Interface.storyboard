@@ -15,7 +15,11 @@
                                 <action selector="pickerValueChanged:" destination="AgC-eL-Hgc" id="tsc-Ef-DBa"/>
                             </connections>
                         </picker>
-                        <group width="1" height="1" heightAdjustment="-10" alignment="left" id="5MF-A2-b8y"/>
+                        <group width="1" height="1" heightAdjustment="-10" alignment="left" id="5MF-A2-b8y">
+                            <items>
+                                <imageView width="20" height="20" alignment="left" image="circle" id="2Jz-Us-djM"/>
+                            </items>
+                        </group>
                         <group width="1" height="10" alignment="left" verticalAlignment="bottom" id="Efl-iu-4Lc">
                             <items>
                                 <group alignment="left" id="lbR-bC-V2o">
@@ -28,6 +32,8 @@
                         </group>
                     </items>
                     <connections>
+                        <outlet property="ball" destination="2Jz-Us-djM" id="ihS-qA-W7q"/>
+                        <outlet property="ballGroup" destination="5MF-A2-b8y" id="2zG-aB-VKk"/>
                         <outlet property="paddle" destination="lbR-bC-V2o" id="sZH-na-erU"/>
                         <outlet property="paddleGroup" destination="Efl-iu-4Lc" id="zec-W8-fKz"/>
                         <outlet property="picker" destination="2NU-Tw-Pwy" id="Aeo-iI-b84"/>
