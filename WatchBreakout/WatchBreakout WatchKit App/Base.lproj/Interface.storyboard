@@ -15,12 +15,175 @@
                                 <action selector="pickerValueChanged:" destination="AgC-eL-Hgc" id="tsc-Ef-DBa"/>
                             </connections>
                         </picker>
-                        <group width="1" height="1" heightAdjustment="-10" alignment="left" id="5MF-A2-b8y"/>
-                        <group width="1" height="10" alignment="left" verticalAlignment="bottom" id="Efl-iu-4Lc">
+                        <group width="1" height="1" heightAdjustment="-10" alignment="left" layout="vertical" radius="0.0" spacing="2" id="5MF-A2-b8y">
                             <items>
-                                <group alignment="left" id="lbR-bC-V2o">
+                                <group alignment="center" id="b3D-Fv-zPo">
                                     <items>
-                                        <imageView width="30" height="10" alignment="left" image="Paddle" contentMode="redraw" id="xEc-ya-aLA"/>
+                                        <group alignment="left" id="1su-Lu-5y6">
+                                            <items>
+                                                <group width="31" height="12.5" alignment="left" backgroundImage="Paddle" contentMode="redraw" radius="2" id="mbo-2j-z8A">
+                                                    <variation key="device=watch42mm" width="35"/>
+                                                </group>
+                                            </items>
+                                        </group>
+                                        <group alignment="left" id="ded-AC-0hi">
+                                            <items>
+                                                <group width="31" height="12.5" alignment="left" backgroundImage="Paddle" contentMode="redraw" radius="2" id="ciW-p2-sAS">
+                                                    <variation key="device=watch42mm" width="35"/>
+                                                </group>
+                                            </items>
+                                        </group>
+                                        <group alignment="left" id="Znx-tI-Znl">
+                                            <items>
+                                                <group width="31" height="12.5" alignment="left" backgroundImage="Paddle" contentMode="redraw" radius="2" id="TMN-1D-ABv">
+                                                    <variation key="device=watch42mm" width="35"/>
+                                                </group>
+                                            </items>
+                                        </group>
+                                        <group alignment="left" id="8jI-d1-3gz">
+                                            <items>
+                                                <group width="31" height="12.5" alignment="left" backgroundImage="Paddle" contentMode="redraw" radius="2" id="af7-tG-PMa">
+                                                    <variation key="device=watch42mm" width="35"/>
+                                                </group>
+                                            </items>
+                                        </group>
+                                    </items>
+                                </group>
+                                <group alignment="center" id="dgu-bn-Q6B">
+                                    <items>
+                                        <group alignment="left" id="pai-Jf-4Vv">
+                                            <items>
+                                                <group width="31" height="12.5" alignment="left" backgroundImage="Paddle" contentMode="redraw" radius="2" id="Gpx-Gf-xGD">
+                                                    <variation key="device=watch42mm" width="35"/>
+                                                </group>
+                                            </items>
+                                        </group>
+                                        <group alignment="left" id="4t8-4X-dPx">
+                                            <items>
+                                                <group width="31" height="12.5" alignment="left" backgroundImage="Paddle" contentMode="redraw" radius="2" id="P0U-41-wyc">
+                                                    <variation key="device=watch42mm" width="35"/>
+                                                </group>
+                                            </items>
+                                        </group>
+                                        <group alignment="left" id="U4r-L6-3Kq">
+                                            <items>
+                                                <group width="31" height="12.5" alignment="left" backgroundImage="Paddle" contentMode="redraw" radius="2" id="EoS-EI-BJQ">
+                                                    <variation key="device=watch42mm" width="35"/>
+                                                </group>
+                                            </items>
+                                        </group>
+                                        <group alignment="left" id="36U-bJ-56X">
+                                            <items>
+                                                <group width="31" height="12.5" alignment="left" backgroundImage="Paddle" contentMode="redraw" radius="2" id="Apa-Ew-aV5">
+                                                    <variation key="device=watch42mm" width="35"/>
+                                                </group>
+                                            </items>
+                                        </group>
+                                    </items>
+                                </group>
+                                <group alignment="center" id="u3R-Dg-ruk">
+                                    <items>
+                                        <group alignment="left" id="mqV-FP-9n8">
+                                            <items>
+                                                <group width="31" height="12.5" alignment="left" backgroundImage="Paddle" contentMode="redraw" radius="2" id="m4m-XK-17L">
+                                                    <variation key="device=watch42mm" width="35"/>
+                                                </group>
+                                            </items>
+                                        </group>
+                                        <group alignment="left" id="d6n-E5-fRW">
+                                            <items>
+                                                <group width="31" height="12.5" alignment="left" backgroundImage="Paddle" contentMode="redraw" radius="2" id="5K1-Fs-FMT">
+                                                    <variation key="device=watch42mm" width="35"/>
+                                                </group>
+                                            </items>
+                                        </group>
+                                        <group alignment="left" id="Lrc-zJ-ij8">
+                                            <items>
+                                                <group width="31" height="12.5" alignment="left" backgroundImage="Paddle" contentMode="redraw" radius="2" id="lK6-2S-Qnh">
+                                                    <variation key="device=watch42mm" width="35"/>
+                                                </group>
+                                            </items>
+                                        </group>
+                                        <group alignment="left" id="3QU-oC-G7X">
+                                            <items>
+                                                <group width="31" height="12.5" alignment="left" backgroundImage="Paddle" contentMode="redraw" radius="2" id="zS5-D2-3Lk">
+                                                    <variation key="device=watch42mm" width="35"/>
+                                                </group>
+                                            </items>
+                                        </group>
+                                    </items>
+                                </group>
+                                <group alignment="center" id="V3e-fB-kC4">
+                                    <items>
+                                        <group alignment="left" id="pBb-uA-x8c">
+                                            <items>
+                                                <group width="31" height="12.5" alignment="left" backgroundImage="Paddle" contentMode="redraw" radius="2" id="K8U-yI-VvY">
+                                                    <variation key="device=watch42mm" width="35"/>
+                                                </group>
+                                            </items>
+                                        </group>
+                                        <group alignment="left" id="0sF-YV-2LB">
+                                            <items>
+                                                <group width="31" height="12.5" alignment="left" backgroundImage="Paddle" contentMode="redraw" radius="2" id="K0R-4P-Vzq">
+                                                    <variation key="device=watch42mm" width="35"/>
+                                                </group>
+                                            </items>
+                                        </group>
+                                        <group alignment="left" id="fUA-d1-Odp">
+                                            <items>
+                                                <group width="31" height="12.5" alignment="left" backgroundImage="Paddle" contentMode="redraw" radius="2" id="XIG-7X-3o5">
+                                                    <variation key="device=watch42mm" width="35"/>
+                                                </group>
+                                            </items>
+                                        </group>
+                                        <group alignment="left" id="Buf-SA-4xU">
+                                            <items>
+                                                <group width="31" height="12.5" alignment="left" backgroundImage="Paddle" contentMode="redraw" radius="2" id="dOS-Qw-AOT">
+                                                    <variation key="device=watch42mm" width="35"/>
+                                                </group>
+                                            </items>
+                                        </group>
+                                    </items>
+                                </group>
+                                <group alignment="center" id="e14-Sz-WcG">
+                                    <items>
+                                        <group alignment="left" id="Cdk-zs-B4K">
+                                            <items>
+                                                <group width="31" height="12.5" alignment="left" backgroundImage="Paddle" contentMode="redraw" radius="2" id="EDK-Lh-U0g">
+                                                    <variation key="device=watch42mm" width="35"/>
+                                                </group>
+                                            </items>
+                                        </group>
+                                        <group alignment="left" id="LBv-G7-7Jx">
+                                            <items>
+                                                <group width="31" height="12.5" alignment="left" backgroundImage="Paddle" contentMode="redraw" radius="2" id="cks-13-uS1">
+                                                    <variation key="device=watch42mm" width="35"/>
+                                                </group>
+                                            </items>
+                                        </group>
+                                        <group alignment="left" id="F7A-KB-KIv">
+                                            <items>
+                                                <group width="31" height="12.5" alignment="left" backgroundImage="Paddle" contentMode="redraw" radius="2" id="LDl-GD-FS6">
+                                                    <variation key="device=watch42mm" width="35"/>
+                                                </group>
+                                            </items>
+                                        </group>
+                                        <group alignment="left" id="BLM-qY-j2g">
+                                            <items>
+                                                <group width="31" height="12.5" alignment="left" backgroundImage="Paddle" contentMode="redraw" radius="2" id="bG4-84-mgr">
+                                                    <variation key="device=watch42mm" width="35"/>
+                                                </group>
+                                            </items>
+                                        </group>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
+                        <group width="1" height="10" alignment="left" verticalAlignment="bottom" radius="0.0" spacing="0.0" id="Efl-iu-4Lc">
+                            <items>
+                                <group alignment="left" radius="2" id="lbR-bC-V2o">
+                                    <items>
+                                        <imageView width="30" height="7" alignment="left" image="Paddle" contentMode="redraw" id="xEc-ya-aLA"/>
                                     </items>
                                 </group>
                             </items>
@@ -28,6 +191,7 @@
                         </group>
                     </items>
                     <connections>
+                        <outlet property="brick1" destination="mbo-2j-z8A" id="gYo-U2-7ov"/>
                         <outlet property="paddle" destination="lbR-bC-V2o" id="sZH-na-erU"/>
                         <outlet property="paddleGroup" destination="Efl-iu-4Lc" id="zec-W8-fKz"/>
                         <outlet property="picker" destination="2NU-Tw-Pwy" id="Aeo-iI-b84"/>
@@ -47,7 +211,7 @@
                     <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="14"/>
                 </glanceController>
             </objects>
-            <point key="canvasLocation" x="365" y="156"/>
+            <point key="canvasLocation" x="547" y="156"/>
         </scene>
     </scenes>
 </document>
