@@ -192,6 +192,25 @@
                     </items>
                     <connections>
                         <outlet property="brick1" destination="mbo-2j-z8A" id="gYo-U2-7ov"/>
+                        <outlet property="brick10" destination="5K1-Fs-FMT" id="sXO-Rg-o3w"/>
+                        <outlet property="brick11" destination="lK6-2S-Qnh" id="40J-U0-H12"/>
+                        <outlet property="brick12" destination="zS5-D2-3Lk" id="PEL-89-gBy"/>
+                        <outlet property="brick13" destination="K8U-yI-VvY" id="jdg-hr-7zC"/>
+                        <outlet property="brick14" destination="K0R-4P-Vzq" id="uMY-G0-vDW"/>
+                        <outlet property="brick15" destination="XIG-7X-3o5" id="FSg-ph-bvd"/>
+                        <outlet property="brick16" destination="dOS-Qw-AOT" id="o2Z-sS-dOp"/>
+                        <outlet property="brick17" destination="EDK-Lh-U0g" id="dd4-RX-sIv"/>
+                        <outlet property="brick18" destination="cks-13-uS1" id="sXe-4v-OyW"/>
+                        <outlet property="brick19" destination="LDl-GD-FS6" id="9Cn-Xz-lfa"/>
+                        <outlet property="brick2" destination="ciW-p2-sAS" id="VyR-va-TMg"/>
+                        <outlet property="brick20" destination="bG4-84-mgr" id="BMm-Ph-E2d"/>
+                        <outlet property="brick3" destination="TMN-1D-ABv" id="GuG-7t-49w"/>
+                        <outlet property="brick4" destination="af7-tG-PMa" id="4H0-OA-yh9"/>
+                        <outlet property="brick5" destination="Gpx-Gf-xGD" id="8vo-M4-bQj"/>
+                        <outlet property="brick6" destination="P0U-41-wyc" id="HJU-47-pdu"/>
+                        <outlet property="brick7" destination="EoS-EI-BJQ" id="gu6-c6-fmW"/>
+                        <outlet property="brick8" destination="Apa-Ew-aV5" id="AZE-Q5-DhH"/>
+                        <outlet property="brick9" destination="m4m-XK-17L" id="5l0-ib-dKc"/>
                         <outlet property="paddle" destination="lbR-bC-V2o" id="sZH-na-erU"/>
                         <outlet property="paddleGroup" destination="Efl-iu-4Lc" id="zec-W8-fKz"/>
                         <outlet property="picker" destination="2NU-Tw-Pwy" id="Aeo-iI-b84"/>

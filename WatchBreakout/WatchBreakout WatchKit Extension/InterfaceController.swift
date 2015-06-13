@@ -16,18 +16,22 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet var brick2: WKInterfaceGroup!
     @IBOutlet var brick3: WKInterfaceGroup!
     @IBOutlet var brick4: WKInterfaceGroup!
+    
     @IBOutlet var brick5: WKInterfaceGroup!
     @IBOutlet var brick6: WKInterfaceGroup!
     @IBOutlet var brick7: WKInterfaceGroup!
     @IBOutlet var brick8: WKInterfaceGroup!
+    
     @IBOutlet var brick9: WKInterfaceGroup!
     @IBOutlet var brick10: WKInterfaceGroup!
     @IBOutlet var brick11: WKInterfaceGroup!
     @IBOutlet var brick12: WKInterfaceGroup!
+    
     @IBOutlet var brick13: WKInterfaceGroup!
     @IBOutlet var brick14: WKInterfaceGroup!
     @IBOutlet var brick15: WKInterfaceGroup!
     @IBOutlet var brick16: WKInterfaceGroup!
+    
     @IBOutlet var brick17: WKInterfaceGroup!
     @IBOutlet var brick18: WKInterfaceGroup!
     @IBOutlet var brick19: WKInterfaceGroup!
