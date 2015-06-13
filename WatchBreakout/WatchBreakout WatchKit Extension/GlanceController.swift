@@ -46,7 +46,7 @@ class GlanceController: WKInterfaceController {
         let bricksStatus = WBUserDefaults.bricksStatusAry
         let brickHeight = CGFloat(bricksStatus.count)
         let brickWidth = CGFloat(bricksStatus.first?.count ?? 0)
-        
+        return UIImage()
     }
 
 }
