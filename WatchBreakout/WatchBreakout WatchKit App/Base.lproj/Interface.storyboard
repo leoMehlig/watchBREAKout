@@ -17,7 +17,7 @@
                         </picker>
                         <group width="1" height="1" heightAdjustment="-10" alignment="left" layout="vertical" radius="0.0" spacing="2" id="5MF-A2-b8y">
                             <items>
-                                <group alignment="center" radius="2" spacing="0.0" id="b3D-Fv-zPo">
+                                <group alignment="center" radius="2" spacing="2" id="b3D-Fv-zPo">
                                     <items>
                                         <group alignment="left" id="1su-Lu-5y6">
                                             <items>
@@ -49,7 +49,7 @@
                                         </group>
                                     </items>
                                 </group>
-                                <group alignment="center" radius="2" spacing="0.0" id="dgu-bn-Q6B">
+                                <group alignment="center" radius="2" spacing="2" id="dgu-bn-Q6B">
                                     <items>
                                         <group alignment="left" id="pai-Jf-4Vv">
                                             <items>
@@ -81,7 +81,7 @@
                                         </group>
                                     </items>
                                 </group>
-                                <group alignment="center" radius="2" spacing="0.0" id="u3R-Dg-ruk">
+                                <group alignment="center" radius="2" spacing="2" id="u3R-Dg-ruk">
                                     <items>
                                         <group alignment="left" id="mqV-FP-9n8">
                                             <items>
@@ -113,7 +113,7 @@
                                         </group>
                                     </items>
                                 </group>
-                                <group alignment="center" radius="2" spacing="0.0" id="V3e-fB-kC4">
+                                <group alignment="center" radius="2" spacing="2" id="V3e-fB-kC4">
                                     <items>
                                         <group alignment="left" id="pBb-uA-x8c">
                                             <items>
@@ -145,7 +145,7 @@
                                         </group>
                                     </items>
                                 </group>
-                                <group alignment="center" radius="2" spacing="0.0" id="e14-Sz-WcG">
+                                <group alignment="center" radius="2" spacing="2" id="e14-Sz-WcG">
                                     <items>
                                         <group alignment="left" id="Cdk-zs-B4K">
                                             <items>
