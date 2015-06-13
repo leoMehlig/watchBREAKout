@@ -39,4 +39,12 @@ struct WBUserDefaults {
             userDefault.setObject(dict, forKey: Keys.HighscoreHistory)
         }
     }
+    
+    static var earliestDate: NSDate? {
+        let sortedDateAry = Array(highscoreHistory.keys).sort { (first, last) -> Bool in
+            return first.earlierDate(last) == first
+        }
+        return sortedDateAry.first
+        
+    }
 }
