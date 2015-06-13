@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="8121.17" systemVersion="14D136" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc" defaultGlanceController="Sv0-Ai-Zie">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="8121.17" systemVersion="15A178w" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc" defaultGlanceController="Sv0-Ai-Zie">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.14"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="8066.14"/>
@@ -177,7 +177,13 @@
                                         </group>
                                     </items>
                                 </group>
+                                <group width="1" alignment="left" id="LDZ-hJ-9Sv">
+                                    <items>
+                                        <imageView width="20" height="20" alignment="left" image="GreenBrick" id="2fE-tF-Vyo"/>
+                                    </items>
+                                </group>
                             </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                         </group>
                         <group width="1" height="10" alignment="left" verticalAlignment="bottom" radius="0.0" spacing="0.0" id="Efl-iu-4Lc">
                             <items>
@@ -191,6 +197,8 @@
                         </group>
                     </items>
                     <connections>
+                        <outlet property="ball" destination="2fE-tF-Vyo" id="ldB-bb-UZe"/>
+                        <outlet property="ballGroup" destination="LDZ-hJ-9Sv" id="RcL-Ho-wfZ"/>
                         <outlet property="brick1" destination="mbo-2j-z8A" id="gYo-U2-7ov"/>
                         <outlet property="brick10" destination="5K1-Fs-FMT" id="sXO-Rg-o3w"/>
                         <outlet property="brick11" destination="lK6-2S-Qnh" id="40J-U0-H12"/>
