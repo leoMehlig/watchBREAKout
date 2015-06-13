@@ -22,7 +22,7 @@ class InterfaceController: WKInterfaceController {
         var screenWidth = Int(WKInterfaceDevice.currentDevice().screenBounds.size.width)
         screenWidth -= 30
         print(screenWidth)
-        for _ in 0...screenWidth{
+        for _ in 0...screenWidth/2{
             let item = WKPickerItem()
             item.contentImage = WKImage(image: UIImage(named: "Pixel")!)
             items.append(item)
@@ -45,6 +45,6 @@ class InterfaceController: WKInterfaceController {
     }
 
     @IBAction func pickerValueChanged(value: Int) {
-        paddleGroup.setContentInset(UIEdgeInsetsMake(0, CGFloat(value), 0, 0))
+        paddleGroup.setContentInset(UIEdgeInsetsMake(0, CGFloat(value)*2, 0, 0))
     }
 }
