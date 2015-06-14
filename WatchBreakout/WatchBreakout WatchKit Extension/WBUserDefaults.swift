@@ -109,8 +109,8 @@ struct WBUserDefaults {
         for (row, rowAry) in WBUserDefaults.bricksStatusAry.enumerate() {
             for (column, brick) in rowAry.enumerate() {
                 if brick.visible {
-                    let x = CGFloat(row) * brickWidth + CGFloat(row) * 2
-                    let y = CGFloat(column) * brickHeight + CGFloat(column) * 2
+                    let x = CGFloat(column) * brickWidth + CGFloat(column) * 2
+                    let y = CGFloat(row) * brickHeight + CGFloat(row) * 2
                     print("\(x), \(y)")
                     let path = UIBezierPath(rect: CGRect(x: x, y: y, width: brickWidth, height: brickHeight))
                     brick.color.setFill()
