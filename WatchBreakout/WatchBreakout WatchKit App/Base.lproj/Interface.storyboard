@@ -17,7 +17,7 @@
                         </picker>
                         <group width="1" height="1" heightAdjustment="-10" alignment="left" layout="vertical" radius="0.0" spacing="2" id="5MF-A2-b8y">
                             <items>
-                                <imageView width="20" height="20" alignment="left" image="Paddle" id="2fE-tF-Vyo"/>
+                                <imageView width="20" height="20" alignment="left" image="Ball" contentMode="scaleAspectFit" id="2fE-tF-Vyo"/>
                             </items>
                             <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                         </group>

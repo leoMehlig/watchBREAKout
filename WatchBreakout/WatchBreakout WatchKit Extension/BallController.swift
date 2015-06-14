@@ -89,8 +89,7 @@ class BallController {
     }
     
     
-    
-    // Update real ball position on var change
+            // Update real ball position on var change
     private var currentBallPosition: CGPoint = CGPoint(x: 15, y: 30) {
         didSet {
             // compute insets
