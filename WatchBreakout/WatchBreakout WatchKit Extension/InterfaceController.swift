@@ -10,7 +10,7 @@ import WatchKit
 import Foundation
 
 
-class InterfaceController: WKInterfaceController {
+class InterfaceController: WKInterfaceController, BallControllerDelegate {
 
     @IBOutlet var paddle: WKInterfaceGroup!
     @IBOutlet var picker: WKInterfacePicker!
@@ -20,12 +20,12 @@ class InterfaceController: WKInterfaceController {
     
     
     var ballController: BallController!
-    
+    let screenWidth = Int(WKInterfaceDevice.currentDevice().screenBounds.size.width)
+
     @IBOutlet var ballGroup: WKInterfaceGroup!
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
-        let screenWidth = Int(WKInterfaceDevice.currentDevice().screenBounds.size.width)
-        var editedScreenWidth = screenWidth - 30
+        let editedScreenWidth = screenWidth - 30
         print(editedScreenWidth)
         for _ in 0...editedScreenWidth/2{
             let item = WKPickerItem()
@@ -35,7 +35,7 @@ class InterfaceController: WKInterfaceController {
         
         picker.setItems(items)
         
-        ballGroup.setBackgroundImage(WBUserDefaults.breakoutImageOfSize(CGSize(width: screenWidth, height: screenWidth+30), inSize: CGSize(width: screenWidth, height: screenWidth*2)))
+        ballGroup.setBackgroundImage(WBUserDefaults.breakoutImageOfSize(CGSize(width: screenWidth, height: screenWidth+30), inSize: CGSize(width: screenWidth, height: screenWidth*2), ballcontroller: ballController))
         
 
         // Configure interface objects here.
@@ -45,19 +45,52 @@ class InterfaceController: WKInterfaceController {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         picker.focusForCrownInput()
-        var scale = WKInterfaceDevice.currentDevice().screenScale
-        var screenWidth = Int(WKInterfaceDevice.currentDevice().screenBounds.size.width-30)
-        var screenHeight = Int(WKInterfaceDevice.currentDevice().screenBounds.size.height)
+//        var scale = WKInterfaceDevice.currentDevice().screenScale
+//        var screenWidth = Int(WKInterfaceDevice.currentDevice().screenBounds.size.width-30)
+//        var screenHeight = Int(WKInterfaceDevice.currentDevice().screenBounds.size.height)
 
         
         ballController = BallController(gameRect: CGRect(origin: CGPointZero, size: CGSize(width: 100, height: 110)), ball: ball, ballSize: CGSize(width: 20, height: 20), group: ballGroup)
-        
+        ballController.delegate = self
         ballController.ballSpeed = 20 / 500
         ballController.ballDirection = Float(M_PI * 0.4)
         ballController.startGame()
         ballController.paddleRect = CGRect(x: 0, y: 0, width: 30, height: 0)
         
+        //ballController.obstacles.append(CGRect(x: 20, y: 20, width: 30, height: 10))
+        
+        
     }
+    
+    //MARK: BallControllerDelegate
+    
+    func ballDidMissPaddle() {
+        ballController.pauseGame()
+        WKInterfaceDevice.currentDevice().playHaptic(.Failure)
+    }
+    
+    
+    
+
+    
+    func ballDidHitObstacle(obstacle: CGRect, atIndex: Int) {
+        let i = atIndex / 4
+        var ary = WBUserDefaults.bricksStatusAry
+        ary[i][i % 4].visible = false
+        WBUserDefaults.bricksStatusAry = ary
+        ballGroup.setBackgroundImage(WBUserDefaults.breakoutImageOfSize(CGSize(width: screenWidth, height: screenWidth+30), inSize: CGSize(width: screenWidth, height: screenWidth*2), ballcontroller: ballController))
+        
+    }
+    
+    func ballDidHitWall() {
+        
+    }
+    
+    func ballDidHitPaddle() {
+        WKInterfaceDevice.currentDevice().playHaptic(.Success)
+    }
+    
+    
 
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible

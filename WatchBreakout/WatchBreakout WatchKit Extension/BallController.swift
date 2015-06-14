@@ -73,8 +73,8 @@ class BallController {
         let possiblyNewBallPosition = currentBallPosition + delta
         
         
-        for obstacle in obstacles {
-            if let wallCollisionPosition = ballCollides(atPoint: possiblyNewBallPosition, withWall: obstacle) {
+        for (index, obstacle) in obstacles.enumerate() {
+            if let wallCollisionPosition = ballCollides(atPoint: possiblyNewBallPosition, withWall: obstacle, index: index) {
                 
                 ballDirection = (newDirectionAfterCollision(ballDirection, wallDirection: wallCollisionPosition) % Float(M_PI * 2))
                 currentBallPosition = lastNotCollidedPoint
@@ -107,7 +107,7 @@ class BallController {
     
     //MARK: Collision Detection
     
-    private func ballCollides(atPoint position: CGPoint, withWall wall: CGRect) -> WallPosition? {
+    private func ballCollides(atPoint position: CGPoint, withWall wall: CGRect, index: Int) -> WallPosition? {
         
         // check for gamerect bounds
         if position.x - ballSize.width / 2 > gameRect.width {
@@ -150,7 +150,7 @@ class BallController {
             
             if position.x > wall.origin.x {
                 
-                self.delegate?.ballDidHitObstacle?(wall)
+                self.delegate?.ballDidHitObstacle?(wall, atIndex: index)
                 
                 return .Right // there is a wall on the right
                 //     |||
@@ -158,15 +158,15 @@ class BallController {
                 //     |||
             }
             else if position.x < wall.origin.x + wall.size.width {
-                self.delegate?.ballDidHitObstacle?(wall)
+                self.delegate?.ballDidHitObstacle?(wall, atIndex: index)
                 return .Left
             }
             else if position.y < wall.origin.y + wall.size.height {
-                self.delegate?.ballDidHitObstacle?(wall)
+                self.delegate?.ballDidHitObstacle?(wall, atIndex: index)
                 return .Up
             }
             else if position.y > wall.origin.y {
-                self.delegate?.ballDidHitObstacle?(wall)
+                self.delegate?.ballDidHitObstacle?(wall, atIndex: index)
                 return .Down
             }
             else {
@@ -238,7 +238,7 @@ class BallController {
     optional func ballDidHitPaddle()
     optional func ballDidHitWall()
     optional func ballDidMissPaddle()
-    optional func ballDidHitObstacle(obstacle: CGRect)
+    optional func ballDidHitObstacle(obstacle: CGRect, atIndex: Int)
 }
 
 

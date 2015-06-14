@@ -101,7 +101,7 @@ struct WBUserDefaults {
         return (0..<5).map { _ in return (0..<4).map { _ in return Brick(BrickTypes.randomBrickType)  } }
     }
     
-    static func breakoutImageOfSize(size: CGSize, inSize: CGSize? = nil) -> UIImage {
+    static func breakoutImageOfSize(size: CGSize, inSize: CGSize? = nil, ballcontroller: BallController? = nil) -> UIImage {
         let bricksStatus = WBUserDefaults.bricksStatusAry
         let brickHeight = (size.height - CGFloat(bricksStatus.count) * 2) / CGFloat(bricksStatus.count)
         let brickWidth = (size.width - CGFloat(bricksStatus.first?.count ?? 0) * 2) / CGFloat(bricksStatus.first?.count ?? 0)
@@ -113,6 +113,7 @@ struct WBUserDefaults {
                     let y = CGFloat(row) * brickHeight + CGFloat(row) * 2
                     print("\(x), \(y)")
                     let path = UIBezierPath(rect: CGRect(x: x, y: y, width: brickWidth, height: brickHeight))
+                    ballcontroller?.obstacles.append(CGRect(x: x, y: y, width: brickWidth, height: brickHeight))
                     brick.color.setFill()
                     path.fill()
                 }
