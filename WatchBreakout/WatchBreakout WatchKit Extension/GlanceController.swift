@@ -8,7 +8,7 @@
 
 import WatchKit
 import Foundation
-
+import CoreGraphics
 
 class GlanceController: WKInterfaceController {
 
@@ -18,14 +18,29 @@ class GlanceController: WKInterfaceController {
         // Configure interface objects here.
     }
 
+    @IBOutlet var highscoreLabel: WKInterfaceLabel! {
+        didSet {
+            highscoreLabel.setText(String(WBUserDefaults.highscore))
+        }
+    }
+    @IBOutlet var glanceImage: WKInterfaceImage! {
+        didSet {
+            glanceImage.setImage(WBUserDefaults.breakoutImageOfSize(CGSize(width: 130, height: 100)))
+        }
+    }
+    @IBOutlet var levelLabel: WKInterfaceLabel!
+    @IBOutlet var footerLabel: WKInterfaceLabel!
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        
     }
 
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
     }
-
+    
+    
+    
 }

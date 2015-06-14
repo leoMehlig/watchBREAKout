@@ -10,30 +10,33 @@
             <objects>
                 <controller contentMode="scaleAspectFit" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="WatchBreakout_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <picker width="1" height="2" alignment="left" style="sequence" id="2NU-Tw-Pwy">
+                        <picker width="1" height="1" heightAdjustment="-1000" alignment="left" style="sequence" id="2NU-Tw-Pwy">
                             <connections>
                                 <action selector="pickerValueChanged:" destination="AgC-eL-Hgc" id="tsc-Ef-DBa"/>
                             </connections>
                         </picker>
-                        <group width="1" height="1" heightAdjustment="-10" alignment="left" id="5MF-A2-b8y">
+                        <group width="1" height="1" heightAdjustment="-10" alignment="left" layout="vertical" radius="0.0" spacing="2" id="5MF-A2-b8y">
                             <items>
-                                <imageView width="20" height="20" alignment="left" image="circle" id="2Jz-Us-djM"/>
+                                <imageView width="20" height="20" alignment="left" image="Paddle" id="2fE-tF-Vyo"/>
                             </items>
+                            <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                         </group>
-                        <group width="1" height="10" alignment="left" verticalAlignment="bottom" id="Efl-iu-4Lc">
+                        <group width="1" height="10" alignment="left" verticalAlignment="bottom" radius="0.0" spacing="0.0" id="Efl-iu-4Lc">
                             <items>
-                                <group alignment="left" id="lbR-bC-V2o">
+                                <group alignment="left" radius="2" id="lbR-bC-V2o">
                                     <items>
-                                        <imageView width="30" height="10" alignment="left" image="Paddle" contentMode="redraw" id="xEc-ya-aLA"/>
+                                        <imageView width="30" height="7" alignment="left" image="Paddle" contentMode="redraw" id="xEc-ya-aLA"/>
                                     </items>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </group>
                             </items>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <edgeInsets key="margins" left="1" right="0.0" top="0.0" bottom="0.0"/>
                         </group>
                     </items>
                     <connections>
-                        <outlet property="ball" destination="2Jz-Us-djM" id="ihS-qA-W7q"/>
-                        <outlet property="ballGroup" destination="5MF-A2-b8y" id="2zG-aB-VKk"/>
+                        <outlet property="ball" destination="2fE-tF-Vyo" id="ldB-bb-UZe"/>
+                        <outlet property="ballGroup" destination="5MF-A2-b8y" id="jqu-0c-Tif"/>
                         <outlet property="paddle" destination="lbR-bC-V2o" id="sZH-na-erU"/>
                         <outlet property="paddleGroup" destination="Efl-iu-4Lc" id="zec-W8-fKz"/>
                         <outlet property="picker" destination="2NU-Tw-Pwy" id="Aeo-iI-b84"/>
@@ -45,15 +48,30 @@
         <!--Glance Interface Controller-->
         <scene sceneID="rjY-Ar-IMT">
             <objects>
-                <glanceController spacing="0.0" id="Sv0-Ai-Zie" customClass="GlanceController" customModule="WatchBreakout_WatchKit_App" customModuleProvider="target">
+                <glanceController spacing="0.0" topTemplateType="body1Medium" bottomTemplateType="groupBody1Footer" id="Sv0-Ai-Zie" customClass="GlanceController" customModule="WatchBreakout_WatchKit_App" customModuleProvider="target">
                     <items>
-                        <group alignment="left" id="gv7-I2-MZq"/>
-                        <group alignment="left" id="eew-Gs-W6Y"/>
+                        <label alignment="left" text="Highscore" id="Lh0-st-4Ra">
+                            <color key="textColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.77647058820000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </label>
+                        <label alignment="left" text="45" id="5Ey-zk-8GX"/>
+                        <group alignment="left" id="eew-Gs-W6Y">
+                            <items>
+                                <imageView width="135" height="100" alignment="left" id="4EV-SQ-uIU"/>
+                            </items>
+                        </group>
+                        <label alignment="left" text="Level 6" id="X7x-ps-ypj"/>
+                        <label alignment="left" id="hWF-lu-fh9"/>
                     </items>
                     <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="14"/>
+                    <connections>
+                        <outlet property="footerLabel" destination="hWF-lu-fh9" id="eSd-vz-xFn"/>
+                        <outlet property="glanceImage" destination="4EV-SQ-uIU" id="91S-1J-1ZX"/>
+                        <outlet property="highscoreLabel" destination="5Ey-zk-8GX" id="xmu-hm-WaW"/>
+                        <outlet property="levelLabel" destination="X7x-ps-ypj" id="agf-ee-uck"/>
+                    </connections>
                 </glanceController>
             </objects>
-            <point key="canvasLocation" x="365" y="156"/>
+            <point key="canvasLocation" x="547" y="156"/>
         </scene>
     </scenes>
 </document>

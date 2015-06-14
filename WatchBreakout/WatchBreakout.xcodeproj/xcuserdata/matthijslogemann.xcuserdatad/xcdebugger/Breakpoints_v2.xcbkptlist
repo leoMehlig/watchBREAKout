@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WatchBreakout WatchKit Extension/InterfaceController.swift"
-            timestampString = "455915323.506401"
+            timestampString = "455933324.848562"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "pickerValueChanged(_:)"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "randomBrickImage()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,28 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WatchBreakout WatchKit Extension/InterfaceController.swift"
-            timestampString = "455915323.506401"
+            timestampString = "455933009.834263"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "awakeWithContext(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WatchBreakout WatchKit Extension/InterfaceController.swift"
-            timestampString = "455915323.506401"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "awakeWithContext(_:)"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "willActivate()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

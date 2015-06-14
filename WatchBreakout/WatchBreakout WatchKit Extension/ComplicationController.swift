@@ -18,11 +18,11 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     }
     
     func getTimelineStartDateForComplication(complication: CLKComplication, withHandler handler: (NSDate?) -> Void) {
-        handler(nil)
+        handler(NSDate())
     }
     
     func getTimelineEndDateForComplication(complication: CLKComplication, withHandler handler: (NSDate?) -> Void) {
-        handler(nil)
+        handler(NSDate())
     }
     
     func getPrivacyBehaviorForComplication(complication: CLKComplication, withHandler handler: (CLKComplicationPrivacyBehavior) -> Void) {
@@ -30,7 +30,6 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     }
     
     // MARK: - Timeline Population
-    
     func getCurrentTimelineEntryForComplication(complication: CLKComplication, withHandler handler: ((CLKComplicationTimelineEntry?) -> Void)) {
         // Call the handler with the current timeline entry
         handler(nil)
@@ -53,11 +52,16 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         handler(nil);
     }
     
-    // MARK: - Placeholder Templates
-    
     func getPlaceholderTemplateForComplication(complication: CLKComplication, withHandler handler: (CLKComplicationTemplate?) -> Void) {
-        // This method will be called once per supported complication, and the results will be cached
-        handler(nil)
+        switch complication.family {
+        case .UtilitarianLarge:
+            let template: CLKComplicationTemplateUtilitarianLargeFlat = CLKComplicationTemplateUtilitarianLargeFlat()
+            let simpleTextProvider: CLKSimpleTextProvider = CLKSimpleTextProvider(text: "Hello World")
+            template.textProvider = simpleTextProvider
+            handler(template)
+        default:
+            handler(nil)
+        }
     }
     
 }
