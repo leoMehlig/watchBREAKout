@@ -32,7 +32,7 @@ class InterfaceController: WKInterfaceController {
         
         picker.setItems(items)
         
-        ballGroup.setBackgroundImage(WBUserDefaults.breakoutImageOfSize(CGSize(width: screenWidth, height: screenWidth*2)))
+        ballGroup.setBackgroundImage(WBUserDefaults.breakoutImageOfSize(CGSize(width: screenWidth, height: screenWidth+30), inSize: CGSize(width: screenWidth, height: screenWidth*2)))
         
 
         // Configure interface objects here.
