@@ -101,11 +101,11 @@ struct WBUserDefaults {
         return (0..<5).map { _ in return (0..<4).map { _ in return Brick(BrickTypes.randomBrickType)  } }
     }
     
-    static func breakoutImageOfSize(size: CGSize) -> UIImage {
+    static func breakoutImageOfSize(size: CGSize, inSize: CGSize? = nil) -> UIImage {
         let bricksStatus = WBUserDefaults.bricksStatusAry
         let brickHeight = (size.height - CGFloat(bricksStatus.count) * 2) / CGFloat(bricksStatus.count)
         let brickWidth = (size.width - CGFloat(bricksStatus.first?.count ?? 0) * 2) / CGFloat(bricksStatus.first?.count ?? 0)
-        UIGraphicsBeginImageContext(size)
+        UIGraphicsBeginImageContext(inSize ?? size)
         for (row, rowAry) in WBUserDefaults.bricksStatusAry.enumerate() {
             for (column, brick) in rowAry.enumerate() {
                 if brick.visible {
