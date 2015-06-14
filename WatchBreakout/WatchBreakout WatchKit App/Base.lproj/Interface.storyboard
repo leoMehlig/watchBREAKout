@@ -15,7 +15,7 @@
                                 <action selector="pickerValueChanged:" destination="AgC-eL-Hgc" id="tsc-Ef-DBa"/>
                             </connections>
                         </picker>
-                        <group width="1" height="1" heightAdjustment="-10" alignment="left" layout="vertical" radius="0.0" spacing="2" id="5MF-A2-b8y">
+                        <group width="1" height="131" alignment="left" layout="vertical" radius="0.0" spacing="2" id="5MF-A2-b8y">
                             <items>
                                 <imageView width="20" height="20" alignment="left" image="Paddle" id="2fE-tF-Vyo"/>
                             </items>

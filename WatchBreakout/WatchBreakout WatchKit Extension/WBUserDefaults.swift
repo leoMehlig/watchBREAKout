@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+ var brickAry: [[Brick]] = WBUserDefaults.randomBreakoutStatusAry
 struct WBUserDefaults {
     private struct Keys {
         static let ScoreHistory = "HighscoreHistory"
@@ -85,20 +85,19 @@ struct WBUserDefaults {
     
     static var bricksStatusAry: [[Brick]] {
         get {
-            let ary = userDefault.arrayForKey(Keys.BricksStatus) as? [[Brick]]
-            return ary ?? randomBreakoutStatusAry
+            return brickAry
         }
         set {
             if newValue.count == 5 {
                 if newValue.filter({ $0.count != 4 }).isEmpty {
-                    userDefault.setObject(newValue, forKey: Keys.BricksStatus)
+                    brickAry = newValue
                 }
             }
         }
     }
     
     static var randomBreakoutStatusAry: [[Brick]] {
-        return (0..<5).map { _ in return (0..<4).map { _ in return Brick(BrickTypes.randomBrickType)  } }
+        return (0..<1).map { _ in return (0..<4).map { _ in return Brick(BrickTypes.randomBrickType)  } }
     }
     
     static func breakoutImageOfSize(size: CGSize, inSize: CGSize? = nil, ballcontroller: BallController? = nil) -> UIImage {
@@ -111,7 +110,7 @@ struct WBUserDefaults {
                 if brick.visible {
                     let x = CGFloat(column) * brickWidth + CGFloat(column) * 2
                     let y = CGFloat(row) * brickHeight + CGFloat(row) * 2
-                    print("\(x), \(y)")
+                    //print("\(x), \(y)")
                     let path = UIBezierPath(rect: CGRect(x: x, y: y, width: brickWidth, height: brickHeight))
                     ballcontroller?.obstacles.append(CGRect(x: x, y: y, width: brickWidth, height: brickHeight))
                     brick.color.setFill()
@@ -141,4 +140,10 @@ class Brick {
         visible = v
         color = c
     }
+}
+
+class Shared {
+    static let sharedInstance = Shared()
+    
+    
 }

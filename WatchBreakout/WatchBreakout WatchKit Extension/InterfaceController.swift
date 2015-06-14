@@ -35,9 +35,19 @@ class InterfaceController: WKInterfaceController, BallControllerDelegate {
         
         picker.setItems(items)
         
-        ballGroup.setBackgroundImage(WBUserDefaults.breakoutImageOfSize(CGSize(width: screenWidth, height: screenWidth+30), inSize: CGSize(width: screenWidth, height: screenWidth*2), ballcontroller: ballController))
+        ballController = BallController(gameRect: CGRect(origin: CGPointZero, size: CGSize(width: 100, height: 120)), ball: ball, ballSize: CGSize(width: 20, height: 20), group: ballGroup)
+        ballController.delegate = self
+        ballController.ballSpeed = 20 / 500
+        ballController.ballDirection = Float(M_PI * 1.6)
+        
+        ballController.paddleRect = CGRect(x: 0, y: 0, width: 30, height: 0)
+        
+        ballGroup.setBackgroundImage(WBUserDefaults.breakoutImageOfSize(CGSize(width: screenWidth, height:  20), inSize: CGSize(width: screenWidth, height: 131), ballcontroller: ballController))
         
 
+        
+        
+        print(ballController.obstacles)
         // Configure interface objects here.
     }
 
@@ -50,12 +60,7 @@ class InterfaceController: WKInterfaceController, BallControllerDelegate {
 //        var screenHeight = Int(WKInterfaceDevice.currentDevice().screenBounds.size.height)
 
         
-        ballController = BallController(gameRect: CGRect(origin: CGPointZero, size: CGSize(width: 100, height: 110)), ball: ball, ballSize: CGSize(width: 20, height: 20), group: ballGroup)
-        ballController.delegate = self
-        ballController.ballSpeed = 20 / 500
-        ballController.ballDirection = Float(M_PI * 0.4)
         ballController.startGame()
-        ballController.paddleRect = CGRect(x: 0, y: 0, width: 30, height: 0)
         
         //ballController.obstacles.append(CGRect(x: 20, y: 20, width: 30, height: 10))
         
@@ -74,11 +79,18 @@ class InterfaceController: WKInterfaceController, BallControllerDelegate {
 
     
     func ballDidHitObstacle(obstacle: CGRect, atIndex: Int) {
+        print("did hit obstacle: \(NSStringFromCGRect(obstacle))")
+        
         let i = atIndex / 4
         var ary = WBUserDefaults.bricksStatusAry
-        ary[i][i % 4].visible = false
+        ary[i][atIndex % 5].visible = false
         WBUserDefaults.bricksStatusAry = ary
-        ballGroup.setBackgroundImage(WBUserDefaults.breakoutImageOfSize(CGSize(width: screenWidth, height: screenWidth+30), inSize: CGSize(width: screenWidth, height: screenWidth*2), ballcontroller: ballController))
+        
+        ballController.obstacles.removeAtIndex(atIndex)
+        
+        ballGroup.setBackgroundImage(WBUserDefaults.breakoutImageOfSize(CGSize(width: screenWidth, height: 20), inSize: CGSize(width: screenWidth, height: 131)))
+    
+        
         
     }
     

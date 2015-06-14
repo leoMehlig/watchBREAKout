@@ -58,11 +58,11 @@ class BallController {
     
     private var gameTimer: NSTimer!
     private var lastFrameUpdate: NSDate = NSDate()
-    private var lastNotCollidedPoint = CGPointZero
+    private var lastNotCollidedPoint = CGPoint(x: 50, y: 90)
     //MARK: main game loop
     
     @objc func gameLoop() { //called every frame
-        
+        print("loop")
         let timeDeltaSinceLastFrame = Float(lastFrameUpdate.timeIntervalSinceNow * -1000.0) // milliseconds
         lastFrameUpdate = NSDate()
         let deltaX = cos(ballDirection) *  (ballSpeed * timeDeltaSinceLastFrame)//...
@@ -91,7 +91,7 @@ class BallController {
     
     
     // Update real ball position on var change
-    private var currentBallPosition: CGPoint = CGPoint(x: 15, y: 30) {
+    private var currentBallPosition: CGPoint = CGPoint(x: 50, y: 90) {
         didSet {
             // compute insets
             var insets = UIEdgeInsets()
@@ -127,8 +127,8 @@ class BallController {
                 
                 self.delegate?.ballDidMissPaddle?()
                 
-                currentBallPosition = CGPoint(x: 30, y: 30)
-                lastNotCollidedPoint = CGPoint(x: 30, y: 30)
+                currentBallPosition = CGPoint(x: 50, y: 90)
+                lastNotCollidedPoint = CGPoint(x: 50, y: 90)
                 lastFrameUpdate = NSDate()
                 return nil
             }
@@ -148,7 +148,7 @@ class BallController {
         
         if CGRectContainsPoint(wall, position) {
             
-            if position.x > wall.origin.x {
+            if position.x + ballSize.width / 2 > wall.origin.x {
                 
                 self.delegate?.ballDidHitObstacle?(wall, atIndex: index)
                 
@@ -157,15 +157,15 @@ class BallController {
                 //   -> *|
                 //     |||
             }
-            else if position.x < wall.origin.x + wall.size.width {
+            else if position.x - ballSize.width / 2 < wall.origin.x + wall.size.width {
                 self.delegate?.ballDidHitObstacle?(wall, atIndex: index)
                 return .Left
             }
-            else if position.y < wall.origin.y + wall.size.height {
+            else if position.y - ballSize.height / 2 < wall.origin.y + wall.size.height {
                 self.delegate?.ballDidHitObstacle?(wall, atIndex: index)
                 return .Up
             }
-            else if position.y > wall.origin.y {
+            else if position.y +  ballSize.height / 2 > wall.origin.y {
                 self.delegate?.ballDidHitObstacle?(wall, atIndex: index)
                 return .Down
             }
@@ -209,7 +209,7 @@ class BallController {
             straightDirection = Float(M_PI * 1.5)
             
             let offsetFromStraight = (originalDirection % Float(M_PI * 2)) - straightDirection
-            return abs(straightDirection - Float(M_PI)) - offsetFromStraight - Float(percentage / 2)
+            return abs(straightDirection - Float(M_PI)) - offsetFromStraight - Float(percentage / 3)
             
             
         }
