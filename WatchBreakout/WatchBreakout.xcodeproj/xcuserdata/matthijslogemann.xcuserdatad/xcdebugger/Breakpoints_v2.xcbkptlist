@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WatchBreakout WatchKit Extension/InterfaceController.swift"
-            timestampString = "455927190.155514"
+            timestampString = "455933324.848562"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "randomBrickImage()"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,28 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WatchBreakout WatchKit Extension/InterfaceController.swift"
-            timestampString = "455927190.155514"
+            timestampString = "455933009.834263"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "willActivate()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WatchBreakout WatchKit Extension/InterfaceController.swift"
-            timestampString = "455927340.674989"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "didDeactivate()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

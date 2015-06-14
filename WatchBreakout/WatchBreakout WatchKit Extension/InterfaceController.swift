@@ -12,36 +12,6 @@ import Foundation
 
 class InterfaceController: WKInterfaceController {
 
-    @IBOutlet var brickRow1: WKInterfaceGroup!
-    @IBOutlet var brick1: WKInterfaceGroup!
-    @IBOutlet var brick2: WKInterfaceGroup!
-    @IBOutlet var brick3: WKInterfaceGroup!
-    @IBOutlet var brick4: WKInterfaceGroup!
-    
-    @IBOutlet var brickRow2: WKInterfaceGroup!
-    @IBOutlet var brick5: WKInterfaceGroup!
-    @IBOutlet var brick6: WKInterfaceGroup!
-    @IBOutlet var brick7: WKInterfaceGroup!
-    @IBOutlet var brick8: WKInterfaceGroup!
-    
-    @IBOutlet var brickRow3: WKInterfaceGroup!
-    @IBOutlet var brick9: WKInterfaceGroup!
-    @IBOutlet var brick10: WKInterfaceGroup!
-    @IBOutlet var brick11: WKInterfaceGroup!
-    @IBOutlet var brick12: WKInterfaceGroup!
-    
-    @IBOutlet var brickRow4: WKInterfaceGroup!
-    @IBOutlet var brick13: WKInterfaceGroup!
-    @IBOutlet var brick14: WKInterfaceGroup!
-    @IBOutlet var brick15: WKInterfaceGroup!
-    @IBOutlet var brick16: WKInterfaceGroup!
-    
-    @IBOutlet var brickRow5: WKInterfaceGroup!
-    @IBOutlet var brick17: WKInterfaceGroup!
-    @IBOutlet var brick18: WKInterfaceGroup!
-    @IBOutlet var brick19: WKInterfaceGroup!
-    @IBOutlet var brick20: WKInterfaceGroup!
-
     @IBOutlet var paddle: WKInterfaceGroup!
     @IBOutlet var picker: WKInterfacePicker!
     var items = [WKPickerItem]()
@@ -51,39 +21,21 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet var ballGroup: WKInterfaceGroup!
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
-        var screenWidth = Int(WKInterfaceDevice.currentDevice().screenBounds.size.width)
-        screenWidth -= 30
-        print(screenWidth)
-        for _ in 0...screenWidth/2{
+        let screenWidth = Int(WKInterfaceDevice.currentDevice().screenBounds.size.width)
+        var editedScreenWidth = screenWidth - 30
+        print(editedScreenWidth)
+        for _ in 0...editedScreenWidth/2{
             let item = WKPickerItem()
             item.contentImage = WKImage(image: UIImage(named: "Pixel")!)
             items.append(item)
         }
         
         picker.setItems(items)
-        // Configure interface objects here.
         
-        brick1.setBackgroundImage(randomBrickImage())
-        brick2.setBackgroundImage(randomBrickImage())
-        brick3.setBackgroundImage(randomBrickImage())
-        brick4.setBackgroundImage(randomBrickImage())
-        brick5.setBackgroundImage(randomBrickImage())
-        brick6.setBackgroundImage(randomBrickImage())
-        brick7.setBackgroundImage(randomBrickImage())
-        brick8.setBackgroundImage(randomBrickImage())
-        brick9.setBackgroundImage(randomBrickImage())
-        brick10.setBackgroundImage(randomBrickImage())
-        brick11.setBackgroundImage(randomBrickImage())
-        brick12.setBackgroundImage(randomBrickImage())
-        brick13.setBackgroundImage(randomBrickImage())
-        brick14.setBackgroundImage(randomBrickImage())
-        brick15.setBackgroundImage(randomBrickImage())
-        brick16.setBackgroundImage(randomBrickImage())
-        brick17.setBackgroundImage(randomBrickImage())
-        brick18.setBackgroundImage(randomBrickImage())
-        brick19.setBackgroundImage(randomBrickImage())
-        brick20.setBackgroundImage(randomBrickImage())
+        ballGroup.setBackgroundImage(WBUserDefaults.breakoutImageOfSize(CGSize(width: screenWidth, height: screenWidth*2)))
+        
 
+        // Configure interface objects here.
     }
 
     override func willActivate() {
@@ -91,13 +43,13 @@ class InterfaceController: WKInterfaceController {
         super.willActivate()
         picker.focusForCrownInput()
         var scale = WKInterfaceDevice.currentDevice().screenScale
-        var screenWidth = Int(WKInterfaceDevice.currentDevice().screenBounds.size.width * scale)
+        var screenWidth = Int(WKInterfaceDevice.currentDevice().screenBounds.size.width-30)
+        var screenHeight = Int(WKInterfaceDevice.currentDevice().screenBounds.size.height)
 
         
-        let controller = BallController(gameRect: CGRect(origin: CGPointZero, size: CGSize(width: 500, height: 40)), ball: ball, ballSize: CGSize(width: 20, height: 20), group: ballGroup)
+        let controller = BallController(gameRect: CGRect(origin: CGPointZero, size: CGSize(width: screenWidth, height: screenHeight)), ball: ball, ballSize: CGSize(width: 20, height: 20), group: ballGroup)
         controller.ballSpeed = 20 / 500
-        controller.ballDirection = Float(0.5)
-
+        controller.ballDirection = Float(0.3)
     }
 
     override func didDeactivate() {
@@ -109,14 +61,14 @@ class InterfaceController: WKInterfaceController {
         paddleGroup.setContentInset(UIEdgeInsetsMake(0, CGFloat(value)*2, 0, 0))
     }
     
-    var blueBrick = UIImage(named: "BlueBrick")
-    var redBrick = UIImage(named: "RedBrick")
-    var purpleBrick = UIImage(named: "PurpleBrick")
-    var greenBrick = UIImage(named: "GreenBrick")
-    var whiteBrick = UIImage(named: "WhiteBrick")
+    var blueBrick = UIColor(red:0.204, green:0.596, blue:0.859, alpha:1.0)
+    var redBrick = UIColor(red:0.906, green:0.298, blue:0.235, alpha:1.0)
+    var purpleBrick = UIColor(red:0.608, green:0.349, blue:0.714, alpha:1.0)
+    var greenBrick = UIColor(red:0.086, green:0.627, blue:0.522, alpha:1.0)
+    var whiteBrick = UIColor.whiteColor()
 
     var whiteBricks = 0
-    func randomBrickImage() -> UIImage? {
+    func randomBrickImage() -> UIColor! {
         var rnd = 0
         if (whiteBricks < 4){
             rnd = randomInt(0, max: 4)
@@ -139,7 +91,7 @@ class InterfaceController: WKInterfaceController {
             return whiteBrick
         }
         else{
-            return UIImage()
+            return UIColor.whiteColor()
         }
     }
     
