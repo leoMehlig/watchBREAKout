@@ -46,7 +46,7 @@ class BallController {
     
     func startGame() {
         lastFrameUpdate = NSDate()
-        gameTimer = NSTimer.scheduledTimerWithTimeInterval(0.06, target: self, selector: Selector("gameLoop"), userInfo: nil, repeats: true)
+        gameTimer = NSTimer.scheduledTimerWithTimeInterval(0.03, target: self, selector: Selector("gameLoop"), userInfo: nil, repeats: true)
     }
     
     func pauseGame() {
@@ -117,7 +117,7 @@ class BallController {
         }
         if position.y - ballSize.height / 2 > gameRect.height{
             // check if we hit the paddle
-            if position.x + ballSize.width >= paddleRect.origin.x && position.x + ballSize.width <= paddleRect.origin.x + paddleRect.size.width  {
+            if position.x + ballSize.width + 5 >= paddleRect.origin.x && position.x + ballSize.width <= paddleRect.origin.x + paddleRect.size.width + 5 {
                 print("did hit paddle")
                 self.delegate?.ballDidHitPaddle?()
                 return .Paddle

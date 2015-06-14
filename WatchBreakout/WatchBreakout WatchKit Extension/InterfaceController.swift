@@ -18,6 +18,9 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet var paddleGroup: WKInterfaceGroup!
     @IBOutlet var ball: WKInterfaceImage!
     
+    
+    var ballController: BallController!
+    
     @IBOutlet var ballGroup: WKInterfaceGroup!
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
@@ -47,9 +50,13 @@ class InterfaceController: WKInterfaceController {
         var screenHeight = Int(WKInterfaceDevice.currentDevice().screenBounds.size.height)
 
         
-        let controller = BallController(gameRect: CGRect(origin: CGPointZero, size: CGSize(width: screenWidth, height: screenHeight)), ball: ball, ballSize: CGSize(width: 20, height: 20), group: ballGroup)
-        controller.ballSpeed = 20 / 500
-        controller.ballDirection = Float(0.3)
+        ballController = BallController(gameRect: CGRect(origin: CGPointZero, size: CGSize(width: 100, height: 110)), ball: ball, ballSize: CGSize(width: 20, height: 20), group: ballGroup)
+        
+        ballController.ballSpeed = 20 / 500
+        ballController.ballDirection = Float(M_PI * 0.4)
+        ballController.startGame()
+        ballController.paddleRect = CGRect(x: 0, y: 0, width: 30, height: 0)
+        
     }
 
     override func didDeactivate() {
@@ -59,6 +66,7 @@ class InterfaceController: WKInterfaceController {
 
     @IBAction func pickerValueChanged(value: Int) {
         paddleGroup.setContentInset(UIEdgeInsetsMake(0, CGFloat(value)*2, 0, 0))
+        ballController.paddleRect = CGRect(x: CGFloat(value)*2, y: 0, width: 30, height: 0)
     }
     
     var blueBrick = UIColor(red:0.204, green:0.596, blue:0.859, alpha:1.0)
