@@ -23,7 +23,7 @@ class BallController {
     var ballDirection: Float = 0 // radian
     var ballSpeed: Float = 0 // pixels per millisecond
     
-    var obstacles = [CGRectZero]
+    var obstacles = [CGRect]()
     var paddleRect = CGRectZero // has to be updated
     
     
@@ -37,8 +37,6 @@ class BallController {
         self.ballGroup = group
         self.ballSize = ballSize
         
-        
-        
     }
     
     
@@ -46,6 +44,8 @@ class BallController {
     
     func startGame() {
         lastFrameUpdate = NSDate()
+        let screenSize = WKInterfaceDevice.currentDevice().screenBounds.size
+        currentBallPosition = CGPointMake(screenSize.width/2, screenSize.height/2)
         gameTimer = NSTimer.scheduledTimerWithTimeInterval(0.03, target: self, selector: Selector("gameLoop"), userInfo: nil, repeats: true)
     }
     
@@ -58,11 +58,10 @@ class BallController {
     
     private var gameTimer: NSTimer!
     private var lastFrameUpdate: NSDate = NSDate()
-    private var lastNotCollidedPoint = CGPointZero
+    private var lastNotCollidedPoint = CGPoint(x: 50, y: 90)
     //MARK: main game loop
     
     @objc func gameLoop() { //called every frame
-        
         let timeDeltaSinceLastFrame = Float(lastFrameUpdate.timeIntervalSinceNow * -1000.0) // milliseconds
         lastFrameUpdate = NSDate()
         let deltaX = cos(ballDirection) *  (ballSpeed * timeDeltaSinceLastFrame)//...
@@ -73,29 +72,48 @@ class BallController {
         let possiblyNewBallPosition = currentBallPosition + delta
         
         
-        for obstacle in obstacles {
-            if let wallCollisionPosition = ballCollides(atPoint: possiblyNewBallPosition, withWall: obstacle) {
+        for (index, obstacle) in obstacles.enumerate() {
+            if let wallCollisionPosition = ballCollides(atPoint: possiblyNewBallPosition, withWall: obstacle, index: index) {
                 
-                ballDirection = (newDirectionAfterCollision(ballDirection, wallDirection: wallCollisionPosition) % Float(M_PI * 2))
-                currentBallPosition = lastNotCollidedPoint
-                return
+                
+                    ballDirection = (newDirectionAfterCollision(ballDirection, wallDirection: wallCollisionPosition) % Float(M_PI * 2))
+                    currentBallPosition = lastNotCollidedPoint
+                    //print("did set new ball direction: \(ballDirection)")
+                    movingoutside = true
+                    return
+                
+                
+                break
+                
             }
         }
         
+        //print(currentBallPosition)
         
         currentBallPosition = possiblyNewBallPosition
         lastNotCollidedPoint = possiblyNewBallPosition
-        
+        movingoutside = false
+        //print(currentBallPosition)
+        //print(ballDirection)
     }
     
     
+<<<<<<< HEAD
             // Update real ball position on var change
     private var currentBallPosition: CGPoint = CGPoint(x: 15, y: 30) {
+=======
+    var movingoutside = false
+    
+    
+    
+    // Update real ball position on var change
+    private var currentBallPosition: CGPoint = CGPoint(x: 50, y: 90) {
+>>>>>>> origin/master
         didSet {
             // compute insets
             var insets = UIEdgeInsets()
-            insets.left = currentBallPosition.x + self.ballSize.width / 2
-            insets.top = currentBallPosition.y + self.ballSize.height / 2
+            insets.left = currentBallPosition.x - self.ballSize.width / 2
+            insets.top = currentBallPosition.y - self.ballSize.height / 2
             
             self.ballGroup.setContentInset(insets)
             
@@ -106,15 +124,14 @@ class BallController {
     
     //MARK: Collision Detection
     
-    private func ballCollides(atPoint position: CGPoint, withWall wall: CGRect) -> WallPosition? {
+    private func ballCollides(atPoint position: CGPoint, withWall wall: CGRect, index: Int) -> WallPosition? {
         
         // check for gamerect bounds
-        if position.x - ballSize.width / 2 > gameRect.width {
+        if position.x + ballSize.width / 2 > gameRect.width {
             self.delegate?.ballDidHitWall?()
-            print("\(NSStringFromCGPoint(position)) is inside \(NSStringFromCGRect(wall))")
             return .Right
         }
-        if position.y - ballSize.height / 2 > gameRect.height{
+        if position.y + ballSize.height / 2 > gameRect.height{
             // check if we hit the paddle
             if position.x + ballSize.width + 5 >= paddleRect.origin.x && position.x + ballSize.width <= paddleRect.origin.x + paddleRect.size.width + 5 {
                 print("did hit paddle")
@@ -126,46 +143,49 @@ class BallController {
                 
                 self.delegate?.ballDidMissPaddle?()
                 
-                currentBallPosition = CGPoint(x: 30, y: 30)
-                lastNotCollidedPoint = CGPoint(x: 30, y: 30)
+                currentBallPosition = CGPoint(x: 50, y: 90)
+                lastNotCollidedPoint = CGPoint(x: 50, y: 90)
                 lastFrameUpdate = NSDate()
-                return nil
+                return .Down
             }
             
             
         }
-        if position.y + ballSize.height / 2 < 0 {
+        if position.y - ballSize.height / 2 < 0 {
             self.delegate?.ballDidHitWall?()
             return .Up
         }
-        if position.x + ballSize.width / 2 < 0 {
+        if position.x - ballSize.width / 2 < 0 {
             self.delegate?.ballDidHitWall?()
             return .Left
         }
         
         
         
-        if CGRectContainsPoint(wall, position) {
+        if CGRectContainsPoint(wall, position) { //TODO: change to CGRectIntersetsRect:
             
-            if position.x > wall.origin.x {
+            
+            //TODO: actually wrong, will only catch Right & Up - works surprisingly well though
+            
+            if position.x + ballSize.width / 2 > wall.origin.x && (position.y + ballSize.height / 2 < wall.origin.y + wall.size.height && position.y + ballSize.height / 2 > wall.origin.y){
                 
-                self.delegate?.ballDidHitObstacle?(wall)
+                self.delegate?.ballDidHitObstacle?(wall, atIndex: index)
                 
                 return .Right // there is a wall on the right
                 //     |||
                 //   -> *|
                 //     |||
             }
-            else if position.x < wall.origin.x + wall.size.width {
-                self.delegate?.ballDidHitObstacle?(wall)
+            else if position.x - ballSize.width / 2 < wall.origin.x + wall.size.width && (position.y + ballSize.height / 2 < wall.origin.y + wall.size.height && position.y + ballSize.height / 2 > wall.origin.y) {
+                self.delegate?.ballDidHitObstacle?(wall, atIndex: index)
                 return .Left
             }
-            else if position.y < wall.origin.y + wall.size.height {
-                self.delegate?.ballDidHitObstacle?(wall)
+            else if position.y - ballSize.height / 2 < wall.origin.y + wall.size.height {
+                self.delegate?.ballDidHitObstacle?(wall, atIndex: index)
                 return .Up
             }
-            else if position.y > wall.origin.y {
-                self.delegate?.ballDidHitObstacle?(wall)
+            else if position.y +  ballSize.height / 2 > wall.origin.y {
+                self.delegate?.ballDidHitObstacle?(wall, atIndex: index)
                 return .Down
             }
             else {
@@ -208,7 +228,7 @@ class BallController {
             straightDirection = Float(M_PI * 1.5)
             
             let offsetFromStraight = (originalDirection % Float(M_PI * 2)) - straightDirection
-            return abs(straightDirection - Float(M_PI)) - offsetFromStraight - Float(percentage / 2)
+            return abs(straightDirection - Float(M_PI)) - offsetFromStraight - Float(percentage / 3)
             
             
         }
@@ -237,7 +257,7 @@ class BallController {
     optional func ballDidHitPaddle()
     optional func ballDidHitWall()
     optional func ballDidMissPaddle()
-    optional func ballDidHitObstacle(obstacle: CGRect)
+    optional func ballDidHitObstacle(obstacle: CGRect, atIndex: Int)
 }
 
 

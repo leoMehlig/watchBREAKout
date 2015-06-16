@@ -25,7 +25,7 @@ class GlanceController: WKInterfaceController {
     }
     @IBOutlet var glanceImage: WKInterfaceImage! {
         didSet {
-            glanceImage.setImage(WBUserDefaults.breakoutImageOfSize(CGSize(width: 130, height: 100)))
+            glanceImage.setImage(WBUserDefaults.breakoutImageOfSize(CGSize(width: 130, height: 100), add: false))
         }
     }
     @IBOutlet var levelLabel: WKInterfaceLabel!

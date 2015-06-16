@@ -10,22 +10,25 @@ import WatchKit
 import Foundation
 
 
-class InterfaceController: WKInterfaceController {
-
+class InterfaceController: WKInterfaceController, BallControllerDelegate {
+    
     @IBOutlet var paddle: WKInterfaceGroup!
     @IBOutlet var picker: WKInterfacePicker!
     var items = [WKPickerItem]()
     @IBOutlet var paddleGroup: WKInterfaceGroup!
     @IBOutlet var ball: WKInterfaceImage!
-    
-    
+    var score = 0
+    var countdownSeconds = 50
+
     var ballController: BallController!
-    
+    let screenWidth = Int(WKInterfaceDevice.currentDevice().screenBounds.size.width)
+    let screenHeight = Int(WKInterfaceDevice.currentDevice().screenBounds.size.height)
+    private var countdownTimer: NSTimer!
+
     @IBOutlet var ballGroup: WKInterfaceGroup!
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
-        let screenWidth = Int(WKInterfaceDevice.currentDevice().screenBounds.size.width)
-        var editedScreenWidth = screenWidth - 30
+        let editedScreenWidth = screenWidth - 40
         print(editedScreenWidth)
         for _ in 0...editedScreenWidth/2{
             let item = WKPickerItem()
@@ -35,38 +38,125 @@ class InterfaceController: WKInterfaceController {
         
         picker.setItems(items)
         
-        ballGroup.setBackgroundImage(WBUserDefaults.breakoutImageOfSize(CGSize(width: screenWidth, height: screenWidth+30), inSize: CGSize(width: screenWidth, height: screenWidth*2)))
+        ballController = BallController(gameRect: CGRect(origin: CGPointZero, size: CGSize(width: screenWidth, height: screenHeight-25)), ball: ball, ballSize: CGSize(width: 20, height: 20), group: ballGroup)
+        ballController.delegate = self
+        ballController.ballSpeed = 70 / 1000
+        ballController.ballDirection = Float(M_PI * 1.2)
         
-
+        ballController.paddleRect = CGRect(x: 0, y: 0, width: 45, height: 0)
+        
+        ballGroup.setBackgroundImage(WBUserDefaults.breakoutImageOfSize(CGSize(width: 151, height:  80), inSize: CGSize(width: 151, height: screenHeight-25), ballcontroller: self.ballController, add: true))
+        
+        print(ballController.obstacles)
         // Configure interface objects here.
     }
-
+    
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         picker.focusForCrownInput()
-        var scale = WKInterfaceDevice.currentDevice().screenScale
-        var screenWidth = Int(WKInterfaceDevice.currentDevice().screenBounds.size.width-30)
-        var screenHeight = Int(WKInterfaceDevice.currentDevice().screenBounds.size.height)
+        countdownTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("countdown"), userInfo: nil, repeats: true)
 
-        
-        ballController = BallController(gameRect: CGRect(origin: CGPointZero, size: CGSize(width: 100, height: 110)), ball: ball, ballSize: CGSize(width: 20, height: 20), group: ballGroup)
-        
-        ballController.ballSpeed = 20 / 500
-        ballController.ballDirection = Float(M_PI * 0.4)
         ballController.startGame()
-        ballController.paddleRect = CGRect(x: 0, y: 0, width: 30, height: 0)
+    }
+    
+    func countdown(){
+        countdownSeconds -= 1
+//        print(countdownSeconds)
+    }
+    //MARK: BallControllerDelegate
+    
+    func ballDidMissPaddle() {
+        ballController.pauseGame()
+        WKInterfaceDevice.currentDevice().playHaptic(.Failure)
+        self.presentControllerWithName("gameOver", context: score)
+        //        ballController.startGame()
+    }
+    
+    
+    var totalHitPaddles = 0.0
+    func ballDidHitObstacle(obstacle: CGRect, atIndex: Int) {
+        print("did hit obstacle: \(NSStringFromCGRect(obstacle))")
+        
+        
+        var ary = WBUserDefaults.bricksStatusAry
+        if ballController.obstacles.count > atIndex {
+            ballController.obstacles[atIndex] = CGRectZero
+        }
+        
+        print("index: \(atIndex)")
+        
+        if (ary[Int(atIndex / 5)]).count > atIndex % 5 {
+            let brick = ary[Int(atIndex / 5)][atIndex % 5]
+            brick.visible = false
+            switch (brick.color){
+            case WBUserDefaults.BrickTypes.SpeedUp:
+                score += 5
+                ballController.ballSpeed *= 1.25
+                break;
+                
+            case WBUserDefaults.BrickTypes.BonusPoints:
+                score += 20
+                break;
+                
+            case WBUserDefaults.BrickTypes.SlowDown:
+                score += 2
+                ballController.ballSpeed *= 0.75
+                break;
+                
+            case WBUserDefaults.BrickTypes.Normal:
+                score += 1
+                break;
+                
+            default:
+                break;
+            }
+        }
+        else {
+            // print("hello")
+        }
+        
+        
+        WBUserDefaults.bricksStatusAry = ary
+        
+        let image = WBUserDefaults.breakoutImageOfSize(CGSize(width: 151, height:  80), inSize: CGSize(width: 151, height: screenHeight-25), ballcontroller: self.ballController, add: false)
+        //print(WBUserDefaults.bricksStatusAry)
+        self.ballGroup.setBackgroundImage(image)
+        
+        
+        totalHitPaddles += 1
+        print (totalHitPaddles / 16)
+        print (((totalHitPaddles / 16)  % 1))
+        print (((totalHitPaddles / 16)  % 1) == 0)
+        if (((totalHitPaddles / 16)  % 1) == 0){
+            WBUserDefaults.bricksStatusAry = WBUserDefaults.randomBreakoutStatusAry
+            let image = WBUserDefaults.breakoutImageOfSize(CGSize(width: 151, height:  80), inSize: CGSize(width: 151, height: screenHeight-25), ballcontroller: self.ballController, add: true)
+            //print(WBUserDefaults.bricksStatusAry)
+            self.ballGroup.setBackgroundImage(image)
+        }
+        setTitle("Score: \(score)")
+    }
+    
+    func ballDidHitWall() {
         
     }
-
+    
+    func ballDidHitPaddle() {
+        WKInterfaceDevice.currentDevice().playHaptic(.Success)
+    }
+    
+    
+    
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
+        ballController.pauseGame()
+        
     }
-
+    
     @IBAction func pickerValueChanged(value: Int) {
         paddleGroup.setContentInset(UIEdgeInsetsMake(0, CGFloat(value)*2, 0, 0))
-        ballController.paddleRect = CGRect(x: CGFloat(value)*2, y: 0, width: 30, height: 0)
+        ballController.paddleRect = CGRect(x: CGFloat(value)*2, y: 0, width: 60, height: 0)
     }
     
     var blueBrick = UIColor(red:0.204, green:0.596, blue:0.859, alpha:1.0)
@@ -74,7 +164,7 @@ class InterfaceController: WKInterfaceController {
     var purpleBrick = UIColor(red:0.608, green:0.349, blue:0.714, alpha:1.0)
     var greenBrick = UIColor(red:0.086, green:0.627, blue:0.522, alpha:1.0)
     var whiteBrick = UIColor.whiteColor()
-
+    
     var whiteBricks = 0
     func randomBrickImage() -> UIColor! {
         var rnd = 0
