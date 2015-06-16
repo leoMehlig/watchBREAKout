@@ -83,7 +83,6 @@ class BallController {
                     return
                 
                 
-                break
                 
             }
         }
