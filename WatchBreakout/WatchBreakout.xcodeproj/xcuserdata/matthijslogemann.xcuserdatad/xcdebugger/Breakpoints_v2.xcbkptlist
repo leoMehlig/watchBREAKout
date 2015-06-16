@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WatchBreakout WatchKit Extension/InterfaceController.swift"
-            timestampString = "455934669.573903"
+            timestampString = "456169479.540952"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "randomBrickImage()"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "ballDidHitObstacle(_:atIndex:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WatchBreakout WatchKit Extension/InterfaceController.swift"
-            timestampString = "455934669.573903"
+            timestampString = "456169479.540952"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "willActivate()"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "awakeWithContext(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -21,11 +21,12 @@ class InterfaceController: WKInterfaceController, BallControllerDelegate {
     
     var ballController: BallController!
     let screenWidth = Int(WKInterfaceDevice.currentDevice().screenBounds.size.width)
+    let screenHeight = Int(WKInterfaceDevice.currentDevice().screenBounds.size.height)
 
     @IBOutlet var ballGroup: WKInterfaceGroup!
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
-        let editedScreenWidth = screenWidth - 60
+        let editedScreenWidth = screenWidth - 40
         print(editedScreenWidth)
         for _ in 0...editedScreenWidth/2{
             let item = WKPickerItem()
@@ -35,12 +36,12 @@ class InterfaceController: WKInterfaceController, BallControllerDelegate {
         
         picker.setItems(items)
         
-        ballController = BallController(gameRect: CGRect(origin: CGPointZero, size: CGSize(width: 152, height: 161)), ball: ball, ballSize: CGSize(width: 20, height: 20), group: ballGroup)
+        ballController = BallController(gameRect: CGRect(origin: CGPointZero, size: CGSize(width: 152, height: screenHeight-25)), ball: ball, ballSize: CGSize(width: 20, height: 20), group: ballGroup)
         ballController.delegate = self
         ballController.ballSpeed = 70 / 1000
         ballController.ballDirection = Float(M_PI * 1.2)
         
-        ballController.paddleRect = CGRect(x: 0, y: 0, width: 60, height: 0)
+        ballController.paddleRect = CGRect(x: 0, y: 0, width: 40, height: 0)
         
         ballGroup.setBackgroundImage(WBUserDefaults.breakoutImageOfSize(CGSize(width: 152, height:  80), inSize: CGSize(width: 152, height: 161), ballcontroller: ballController, add: true))
         
@@ -72,7 +73,7 @@ class InterfaceController: WKInterfaceController, BallControllerDelegate {
     func ballDidMissPaddle() {
         ballController.pauseGame()
         WKInterfaceDevice.currentDevice().playHaptic(.Failure)
-        ballController.startGame()
+//        ballController.startGame()
     }
     
     

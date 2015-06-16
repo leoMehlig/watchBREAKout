@@ -15,18 +15,18 @@
                                 <action selector="pickerValueChanged:" destination="AgC-eL-Hgc" id="tsc-Ef-DBa"/>
                             </connections>
                         </picker>
-                        <group width="131" height="142" alignment="left" backgroundImage="menu_meat_burrito" contentMode="TopLeft" layout="vertical" radius="0.0" spacing="0.0" id="5MF-A2-b8y">
+                        <group width="131" height="1" heightAdjustment="-7" alignment="left" backgroundImage="menu_meat_burrito" contentMode="TopLeft" layout="vertical" radius="0.0" spacing="0.0" id="5MF-A2-b8y">
                             <items>
                                 <imageView width="20" height="20" alignment="left" image="JonyHead" contentMode="scaleAspectFit" id="2fE-tF-Vyo"/>
                             </items>
                             <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
-                            <variation key="device=watch42mm" height="162" width="156"/>
+                            <variation key="device=watch42mm" width="156"/>
                         </group>
-                        <group width="1" height="10" alignment="left" verticalAlignment="bottom" radius="0.0" spacing="0.0" id="Efl-iu-4Lc">
+                        <group width="1" alignment="left" verticalAlignment="bottom" radius="0.0" spacing="0.0" id="Efl-iu-4Lc">
                             <items>
                                 <group alignment="left" radius="2" id="lbR-bC-V2o">
                                     <items>
-                                        <imageView width="60" height="7" alignment="left" image="menu_meat_burrito" contentMode="redraw" id="xEc-ya-aLA"/>
+                                        <imageView width="40" height="7" alignment="left" image="Paddle" contentMode="redraw" id="xEc-ya-aLA"/>
                                     </items>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </group>
