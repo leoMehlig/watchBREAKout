@@ -18,7 +18,7 @@ class InterfaceController: WKInterfaceController, BallControllerDelegate {
     @IBOutlet var paddleGroup: WKInterfaceGroup!
     @IBOutlet var ball: WKInterfaceImage!
     var score = 0
-    var countdownSeconds = 50
+    var countdownSeconds = 5
 
     var ballController: BallController!
     let screenWidth = Int(WKInterfaceDevice.currentDevice().screenBounds.size.width)
@@ -56,12 +56,14 @@ class InterfaceController: WKInterfaceController, BallControllerDelegate {
         super.willActivate()
         picker.focusForCrownInput()
         countdownTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("countdown"), userInfo: nil, repeats: true)
-
-        ballController.startGame()
     }
     
     func countdown(){
         countdownSeconds -= 1
+        if (countdownSeconds == 0){
+            countdownTimer.invalidate()
+            ballController.startGame()
+        }
 //        print(countdownSeconds)
     }
     //MARK: BallControllerDelegate
