@@ -12,6 +12,13 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     func applicationDidFinishLaunching() {
         // Perform any final initialization of your application.
+        
+        let array = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+        
+        
+        for number in array {
+            print("Item \(number): [\(Int(number / 4)) : \(number % 4)]")
+        }
     }
 
     func applicationDidBecomeActive() {

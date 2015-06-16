@@ -84,6 +84,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		402205091B2D2F6900101F8F /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		4069844E1B2CFAF900215E7C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		409486331B2CB9B7002A210D /* BallController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BallController.swift; sourceTree = "<group>"; };
 		7F7940361B2CAD8300490672 /* WatchBreakout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchBreakout.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +148,7 @@
 		7F79402D1B2CAD8300490672 = {
 			isa = PBXGroup;
 			children = (
+				402205091B2D2F6900101F8F /* MyPlayground.playground */,
 				7F7940381B2CAD8300490672 /* WatchBreakout */,
 				7F79404D1B2CAD8300490672 /* WatchBreakoutTests */,
 				7F7940581B2CAD8400490672 /* WatchBreakoutUITests */,
