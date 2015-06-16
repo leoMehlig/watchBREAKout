@@ -15,12 +15,11 @@
                                 <action selector="pickerValueChanged:" destination="AgC-eL-Hgc" id="tsc-Ef-DBa"/>
                             </connections>
                         </picker>
-                        <group width="131" height="1" heightAdjustment="-7" alignment="left" backgroundImage="menu_meat_burrito" contentMode="TopLeft" layout="vertical" radius="0.0" spacing="0.0" id="5MF-A2-b8y">
+                        <group width="1" height="1" heightAdjustment="-7" alignment="left" contentMode="center" layout="vertical" radius="0.0" spacing="0.0" id="5MF-A2-b8y">
                             <items>
                                 <imageView width="20" height="20" alignment="left" image="JonyHead" contentMode="scaleAspectFit" id="2fE-tF-Vyo"/>
                             </items>
                             <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
-                            <variation key="device=watch42mm" width="156"/>
                         </group>
                         <group width="1" alignment="left" verticalAlignment="bottom" radius="0.0" spacing="0.0" id="Efl-iu-4Lc">
                             <items>
@@ -72,7 +71,29 @@
                     </connections>
                 </glanceController>
             </objects>
-            <point key="canvasLocation" x="547" y="156"/>
+            <point key="canvasLocation" x="730" y="216"/>
+        </scene>
+        <!--gameOver-->
+        <scene sceneID="AgJ-Vi-TLi">
+            <objects>
+                <controller identifier="gameOver" spacing="20" hidesWhenLoading="NO" id="YWe-Pa-yFV" customClass="GameOverInterfaceController" customModule="WatchBreakout_WatchKit_Extension">
+                    <items>
+                        <button width="1" alignment="left" verticalAlignment="bottom" title="Try again" id="f3C-oM-A10"/>
+                        <label alignment="center" text="Game over!" id="GP0-Gu-c0U">
+                            <fontDescription key="font" type="boldSystem" pointSize="22"/>
+                        </label>
+                        <label alignment="center" textAlignment="center" numberOfLines="0" id="WLD-da-Een">
+                            <string key="text">Your score was:
+86</string>
+                        </label>
+                    </items>
+                    <edgeInsets key="margins" left="1" right="1" top="0.0" bottom="0.0"/>
+                    <connections>
+                        <outlet property="scoreTextLabal" destination="WLD-da-Een" id="TUL-KM-sag"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="317" y="216"/>
         </scene>
     </scenes>
 </document>

@@ -44,6 +44,8 @@ class BallController {
     
     func startGame() {
         lastFrameUpdate = NSDate()
+        let screenSize = WKInterfaceDevice.currentDevice().screenBounds.size
+        currentBallPosition = CGPointMake(screenSize.width/2, screenSize.height/2)
         gameTimer = NSTimer.scheduledTimerWithTimeInterval(0.03, target: self, selector: Selector("gameLoop"), userInfo: nil, repeats: true)
     }
     
@@ -60,7 +62,6 @@ class BallController {
     //MARK: main game loop
     
     @objc func gameLoop() { //called every frame
-        print("loop")
         let timeDeltaSinceLastFrame = Float(lastFrameUpdate.timeIntervalSinceNow * -1000.0) // milliseconds
         lastFrameUpdate = NSDate()
         let deltaX = cos(ballDirection) *  (ballSpeed * timeDeltaSinceLastFrame)//...

@@ -17,19 +17,19 @@ struct WBUserDefaults {
     }
     
     struct BrickTypes {
-        private static let SpeedUp = UIColor(red:0.204, green:0.596, blue:0.859, alpha:1.0)
-        private static let SlowDown = UIColor(red:0.906, green:0.298, blue:0.235, alpha:1.0)
-        ////            private static let purpleBrick = UIColor(red:0.608, green:0.349, blue:0.714, alpha:1.0)
+        static let SpeedUp = UIColor(red:0.204, green:0.596, blue:0.859, alpha:1.0)
+        static let SlowDown = UIColor(red:0.906, green:0.298, blue:0.235, alpha:1.0)
+        static let BonusPoints = UIColor(red:0.608, green:0.349, blue:0.714, alpha:1.0)
         ////            private static let greenBrick = UIColor(red:0.086, green:0.627, blue:0.522, alpha:1.0)
-        private static let Normal = UIColor.whiteColor()
+        static let Normal = UIColor.whiteColor()
         static var randomBrickType: UIColor {
-            let rnd = randomInt(0, max: 2)
-            if (rnd == 0){
-                return BrickTypes.Normal
-            } else if (rnd == 1){
+            let rnd = randomInt(0, max: 100)
+            if (rnd >= 0 && rnd <= 15){
                 return BrickTypes.SlowDown
-            } else if (rnd == 2){
+            } else if (rnd >= 20 && rnd <= 37){
                 return BrickTypes.SpeedUp
+            }else if (rnd >= 40 && rnd <= 45){
+                return BrickTypes.BonusPoints
             }
             return BrickTypes.Normal
         }
@@ -97,7 +97,7 @@ struct WBUserDefaults {
     }
     
     static var randomBreakoutStatusAry: [[Brick]] {
-        return (0..<4).map { _ in return (0..<4).map { _ in return Brick(BrickTypes.randomBrickType)  } }
+        return (0..<5).map { _ in return (0..<5).map { _ in return Brick(BrickTypes.randomBrickType)  } }
     }
     
     static func breakoutImageOfSize(size: CGSize, inSize: CGSize? = nil, ballcontroller: BallController? = nil, add: Bool) -> UIImage {
