@@ -18,7 +18,7 @@ class InterfaceController: WKInterfaceController, BallControllerDelegate {
     @IBOutlet var paddleGroup: WKInterfaceGroup!
     @IBOutlet var ball: WKInterfaceImage!
     var score = 0
-    var countdownSeconds = 5
+    var countdownSeconds = 3
 
     var ballController: BallController!
     let screenWidth = Int(WKInterfaceDevice.currentDevice().screenBounds.size.width)
@@ -54,8 +54,14 @@ class InterfaceController: WKInterfaceController, BallControllerDelegate {
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        WBUserDefaults.bricksStatusAry = WBUserDefaults.randomBreakoutStatusAry
+        let image = WBUserDefaults.breakoutImageOfSize(CGSize(width: 151, height:  80), inSize: CGSize(width: 151, height: screenHeight-25), ballcontroller: self.ballController, add: true)
+        //print(WBUserDefaults.bricksStatusAry)
+        self.ballGroup.setBackgroundImage(image)
+        countdownSeconds = 3
         picker.focusForCrownInput()
         countdownTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("countdown"), userInfo: nil, repeats: true)
+        ballController.pauseGame()
     }
     
     func countdown(){

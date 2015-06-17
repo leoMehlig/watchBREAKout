@@ -36,7 +36,6 @@ class BallController {
         self.gameRect = gameRect
         self.ballGroup = group
         self.ballSize = ballSize
-        
     }
     
     
@@ -44,13 +43,13 @@ class BallController {
     
     func startGame() {
         lastFrameUpdate = NSDate()
-        let screenSize = WKInterfaceDevice.currentDevice().screenBounds.size
-        currentBallPosition = CGPointMake(screenSize.width/2, screenSize.height/2)
         gameTimer = NSTimer.scheduledTimerWithTimeInterval(0.03, target: self, selector: Selector("gameLoop"), userInfo: nil, repeats: true)
     }
     
     func pauseGame() {
         gameTimer?.invalidate()
+        let screenSize = WKInterfaceDevice.currentDevice().screenBounds.size
+        currentBallPosition = CGPointMake(screenSize.width/2, screenSize.height/2)
     }
     
     
