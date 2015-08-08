@@ -43,7 +43,41 @@ class BallController {
     
     func startGame() {
         lastFrameUpdate = NSDate()
-        gameTimer = NSTimer.scheduledTimerWithTimeInterval(0.03, target: self, selector: Selector("gameLoop"), userInfo: nil, repeats: true)
+        gameTimer = NSTimer.every(0.03) { [unowned self] in
+            let timeDeltaSinceLastFrame = Float(self.lastFrameUpdate.timeIntervalSinceNow * -1000.0) // milliseconds
+            self.lastFrameUpdate = NSDate()
+            let deltaX = cos(self.ballDirection) *  (self.ballSpeed * timeDeltaSinceLastFrame)//...
+            let deltaY = sin(self.ballDirection) *  (self.ballSpeed * timeDeltaSinceLastFrame)//...
+            
+            let delta = CGPoint(x: CGFloat(deltaX), y: CGFloat(deltaY))
+            
+            let possiblyNewBallPosition = self.currentBallPosition + delta
+            
+            
+            for (index, obstacle) in self.obstacles.enumerate() {
+                if let wallCollisionPosition = self.ballCollides(atPoint: possiblyNewBallPosition, withWall: obstacle, index: index) {
+                    
+                    
+                    self.ballDirection = (self.newDirectionAfterCollision(self.ballDirection, wallDirection: wallCollisionPosition) % Float(M_PI * 2))
+                    self.currentBallPosition = self.lastNotCollidedPoint
+                    //print("did set new ball direction: \(ballDirection)")
+                    self.movingoutside = true
+                    return
+                    
+                    
+                    
+                }
+            }
+            
+            //print(currentBallPosition)
+            
+            self.currentBallPosition = possiblyNewBallPosition
+            self.lastNotCollidedPoint = possiblyNewBallPosition
+            self.movingoutside = false
+            //print(currentBallPosition)
+            //print(ballDirection)
+        }
+        
     }
     
     func pauseGame() {
@@ -60,40 +94,6 @@ class BallController {
     private var lastNotCollidedPoint = CGPoint(x: 50, y: 90)
     //MARK: main game loop
     
-    @objc func gameLoop() { //called every frame
-        let timeDeltaSinceLastFrame = Float(lastFrameUpdate.timeIntervalSinceNow * -1000.0) // milliseconds
-        lastFrameUpdate = NSDate()
-        let deltaX = cos(ballDirection) *  (ballSpeed * timeDeltaSinceLastFrame)//...
-        let deltaY = sin(ballDirection) *  (ballSpeed * timeDeltaSinceLastFrame)//...
-        
-        let delta = CGPoint(x: CGFloat(deltaX), y: CGFloat(deltaY))
-        
-        let possiblyNewBallPosition = currentBallPosition + delta
-        
-        
-        for (index, obstacle) in obstacles.enumerate() {
-            if let wallCollisionPosition = ballCollides(atPoint: possiblyNewBallPosition, withWall: obstacle, index: index) {
-                
-                
-                    ballDirection = (newDirectionAfterCollision(ballDirection, wallDirection: wallCollisionPosition) % Float(M_PI * 2))
-                    currentBallPosition = lastNotCollidedPoint
-                    //print("did set new ball direction: \(ballDirection)")
-                    movingoutside = true
-                    return
-                
-                
-                
-            }
-        }
-        
-        //print(currentBallPosition)
-        
-        currentBallPosition = possiblyNewBallPosition
-        lastNotCollidedPoint = possiblyNewBallPosition
-        movingoutside = false
-        //print(currentBallPosition)
-        //print(ballDirection)
-    }
     
     
     var movingoutside = false
@@ -121,20 +121,20 @@ class BallController {
         
         // check for gamerect bounds
         if position.x + ballSize.width / 2 > gameRect.width {
-            self.delegate?.ballDidHitWall?()
+            self.delegate?.ballDidHitWall()
             return .Right
         }
         if position.y + ballSize.height / 2 > gameRect.height{
             // check if we hit the paddle
             if position.x + ballSize.width + 5 >= paddleRect.origin.x && position.x + ballSize.width <= paddleRect.origin.x + paddleRect.size.width + 5 {
                 print("did hit paddle")
-                self.delegate?.ballDidHitPaddle?()
+                self.delegate?.ballDidHitPaddle()
                 return .Paddle
             }
             else {
                 // game over
                 
-                self.delegate?.ballDidMissPaddle?()
+                self.delegate?.ballDidMissPaddle()
                 
                 currentBallPosition = CGPoint(x: 50, y: 90)
                 lastNotCollidedPoint = CGPoint(x: 50, y: 90)
@@ -145,11 +145,11 @@ class BallController {
             
         }
         if position.y - ballSize.height / 2 < 0 {
-            self.delegate?.ballDidHitWall?()
+            self.delegate?.ballDidHitWall()
             return .Up
         }
         if position.x - ballSize.width / 2 < 0 {
-            self.delegate?.ballDidHitWall?()
+            self.delegate?.ballDidHitWall()
             return .Left
         }
         
@@ -162,7 +162,7 @@ class BallController {
             
             if position.x + ballSize.width / 2 > wall.origin.x && (position.y + ballSize.height / 2 < wall.origin.y + wall.size.height && position.y + ballSize.height / 2 > wall.origin.y){
                 
-                self.delegate?.ballDidHitObstacle?(wall, atIndex: index)
+                self.delegate?.ballDidHitObstacle(wall, atIndex: index)
                 
                 return .Right // there is a wall on the right
                 //     |||
@@ -170,15 +170,15 @@ class BallController {
                 //     |||
             }
             else if position.x - ballSize.width / 2 < wall.origin.x + wall.size.width && (position.y + ballSize.height / 2 < wall.origin.y + wall.size.height && position.y + ballSize.height / 2 > wall.origin.y) {
-                self.delegate?.ballDidHitObstacle?(wall, atIndex: index)
+                self.delegate?.ballDidHitObstacle(wall, atIndex: index)
                 return .Left
             }
             else if position.y - ballSize.height / 2 < wall.origin.y + wall.size.height {
-                self.delegate?.ballDidHitObstacle?(wall, atIndex: index)
+                self.delegate?.ballDidHitObstacle(wall, atIndex: index)
                 return .Up
             }
             else if position.y +  ballSize.height / 2 > wall.origin.y {
-                self.delegate?.ballDidHitObstacle?(wall, atIndex: index)
+                self.delegate?.ballDidHitObstacle(wall, atIndex: index)
                 return .Down
             }
             else {
@@ -245,12 +245,11 @@ class BallController {
     
 }
 
-
-@objc protocol BallControllerDelegate {
-    optional func ballDidHitPaddle()
-    optional func ballDidHitWall()
-    optional func ballDidMissPaddle()
-    optional func ballDidHitObstacle(obstacle: CGRect, atIndex: Int)
+protocol BallControllerDelegate {
+    func ballDidHitPaddle()
+    func ballDidHitWall()
+    func ballDidMissPaddle()
+    func ballDidHitObstacle(obstacle: CGRect, atIndex: Int)
 }
 
 

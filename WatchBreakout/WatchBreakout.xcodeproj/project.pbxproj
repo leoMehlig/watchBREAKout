@@ -25,6 +25,7 @@
 		7F7940771B2CAD8400490672 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7940761B2CAD8400490672 /* GlanceController.swift */; };
 		7F7940791B2CAD8400490672 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7940781B2CAD8400490672 /* ComplicationController.swift */; };
 		7F79407B1B2CAD8400490672 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F79407A1B2CAD8400490672 /* Assets.xcassets */; };
+		7FA0A7881B764D7E009A55C8 /* SwiftyTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA0A7871B764D7E009A55C8 /* SwiftyTimer.swift */; };
 		7FFB21231B2CD262003E03AA /* WBUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFB21221B2CD262003E03AA /* WBUserDefaults.swift */; };
 /* End PBXBuildFile section */
 
@@ -85,7 +86,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		402205091B2D2F6900101F8F /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		4069844E1B2CFAF900215E7C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		409486331B2CB9B7002A210D /* BallController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BallController.swift; sourceTree = "<group>"; };
 		40CBFE951B309AFE00EB880A /* GameOverInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverInterfaceController.swift; sourceTree = "<group>"; };
@@ -112,6 +112,7 @@
 		7F7940781B2CAD8400490672 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		7F79407A1B2CAD8400490672 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F79407C1B2CAD8400490672 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7FA0A7871B764D7E009A55C8 /* SwiftyTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyTimer.swift; sourceTree = "<group>"; };
 		7FFB21221B2CD262003E03AA /* WBUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBUserDefaults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -150,7 +151,6 @@
 		7F79402D1B2CAD8300490672 = {
 			isa = PBXGroup;
 			children = (
-				402205091B2D2F6900101F8F /* MyPlayground.playground */,
 				7F7940381B2CAD8300490672 /* WatchBreakout */,
 				7F79404D1B2CAD8300490672 /* WatchBreakoutTests */,
 				7F7940581B2CAD8400490672 /* WatchBreakoutUITests */,
@@ -223,6 +223,7 @@
 				409486331B2CB9B7002A210D /* BallController.swift */,
 				7FFB21221B2CD262003E03AA /* WBUserDefaults.swift */,
 				40CBFE951B309AFE00EB880A /* GameOverInterfaceController.swift */,
+				7FA0A7871B764D7E009A55C8 /* SwiftyTimer.swift */,
 				7F79407A1B2CAD8400490672 /* Assets.xcassets */,
 				7F79407C1B2CAD8400490672 /* Info.plist */,
 			);
@@ -448,6 +449,7 @@
 				40CBFE961B309AFE00EB880A /* GameOverInterfaceController.swift in Sources */,
 				7F7940751B2CAD8400490672 /* ExtensionDelegate.swift in Sources */,
 				7F7940791B2CAD8400490672 /* ComplicationController.swift in Sources */,
+				7FA0A7881B764D7E009A55C8 /* SwiftyTimer.swift in Sources */,
 				409486341B2CB9B7002A210D /* BallController.swift in Sources */,
 				7FFB21231B2CD262003E03AA /* WBUserDefaults.swift in Sources */,
 				7F7940731B2CAD8400490672 /* InterfaceController.swift in Sources */,

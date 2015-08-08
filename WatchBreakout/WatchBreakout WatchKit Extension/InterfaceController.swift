@@ -59,17 +59,20 @@ class InterfaceController: WKInterfaceController, BallControllerDelegate {
         //print(WBUserDefaults.bricksStatusAry)
         self.ballGroup.setBackgroundImage(image)
         countdownSeconds = 3
-        picker.focusForCrownInput()
-        countdownTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("countdown"), userInfo: nil, repeats: true)
+        picker.focus()
+        countdownTimer = NSTimer.every(1.0) { [unowned self] in
+            self.countdownSeconds--
+            if (self.countdownSeconds == 0){
+                self.countdownTimer.invalidate()
+                self.ballController.startGame()
+            }
+        }
+        
         ballController.pauseGame()
     }
     
     func countdown(){
-        countdownSeconds -= 1
-        if (countdownSeconds == 0){
-            countdownTimer.invalidate()
-            ballController.startGame()
-        }
+        
 //        print(countdownSeconds)
     }
     //MARK: BallControllerDelegate
