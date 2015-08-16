@@ -19,17 +19,17 @@ class InterfaceController: WKInterfaceController, BallControllerDelegate {
     @IBOutlet var ball: WKInterfaceImage!
     var score = 0
     var countdownSeconds = 3
-
+    
     var ballController: BallController!
     let screenWidth = Int(WKInterfaceDevice.currentDevice().screenBounds.size.width)
     let screenHeight = Int(WKInterfaceDevice.currentDevice().screenBounds.size.height)
     private var countdownTimer: NSTimer!
-
+    
     @IBOutlet var ballGroup: WKInterfaceGroup!
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         let editedScreenWidth = screenWidth - 40
-        print(editedScreenWidth)
+        //   print(editedScreenWidth)
         for _ in 0...editedScreenWidth/2{
             let item = WKPickerItem()
             item.contentImage = WKImage(image: UIImage(named: "Pixel")!)
@@ -47,7 +47,7 @@ class InterfaceController: WKInterfaceController, BallControllerDelegate {
         
         ballGroup.setBackgroundImage(WBUserDefaults.breakoutImageOfSize(CGSize(width: 151, height:  80), inSize: CGSize(width: 151, height: screenHeight-25), ballcontroller: self.ballController, add: true))
         
-        print(ballController.obstacles)
+        // print(ballController.obstacles)
         // Configure interface objects here.
     }
     
@@ -55,9 +55,9 @@ class InterfaceController: WKInterfaceController, BallControllerDelegate {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         WBUserDefaults.bricksStatusAry = WBUserDefaults.randomBreakoutStatusAry
-        let image = WBUserDefaults.breakoutImageOfSize(CGSize(width: 151, height:  80), inSize: CGSize(width: 151, height: screenHeight-25), ballcontroller: self.ballController, add: true)
+        //let image = WBUserDefaults.breakoutImageOfSize(CGSize(width: 151, height:  80), inSize: CGSize(width: 151, height: screenHeight-25), ballcontroller: self.ballController, add: true)
         //print(WBUserDefaults.bricksStatusAry)
-        self.ballGroup.setBackgroundImage(image)
+      //  self.ballGroup.setBackgroundImage(image)
         countdownSeconds = 3
         picker.focus()
         countdownTimer = NSTimer.every(1.0) { [unowned self] in
@@ -73,7 +73,7 @@ class InterfaceController: WKInterfaceController, BallControllerDelegate {
     
     func countdown(){
         
-//        print(countdownSeconds)
+        //        print(countdownSeconds)
     }
     //MARK: BallControllerDelegate
     
@@ -87,7 +87,7 @@ class InterfaceController: WKInterfaceController, BallControllerDelegate {
     
     var totalHitPaddles = 0.0
     func ballDidHitObstacle(obstacle: CGRect, atIndex: Int) {
-        print("did hit obstacle: \(NSStringFromCGRect(obstacle))")
+        // print("did hit obstacle: \(NSStringFromCGRect(obstacle))")
         
         
         var ary = WBUserDefaults.bricksStatusAry
@@ -95,56 +95,58 @@ class InterfaceController: WKInterfaceController, BallControllerDelegate {
             ballController.obstacles[atIndex] = CGRectZero
         }
         
-        print("index: \(atIndex)")
-        
-        if (ary[Int(atIndex / 5)]).count > atIndex % 5 {
-            let brick = ary[Int(atIndex / 5)][atIndex % 5]
-            brick.visible = false
-            switch (brick.color){
-            case WBUserDefaults.BrickTypes.SpeedUp:
-                score += 5
-                ballController.ballSpeed *= 1.25
-                break;
-                
-            case WBUserDefaults.BrickTypes.BonusPoints:
-                score += 20
-                break;
-                
-            case WBUserDefaults.BrickTypes.SlowDown:
-                score += 2
-                ballController.ballSpeed *= 0.75
-                break;
-                
-            case WBUserDefaults.BrickTypes.Normal:
-                score += 1
-                break;
-                
-            default:
-                break;
+        //print("index: \(atIndex)")
+        if atIndex / 5 < ary.count {
+            if (ary[Int(atIndex / 5)]).count > atIndex % 5 {
+                let brick = ary[Int(atIndex / 5)][atIndex % 5]
+                brick.visible = false
+                switch (brick.color){
+                case WBUserDefaults.BrickTypes.SpeedUp:
+                    score += 5
+                    ballController.ballSpeed *= 1.25
+                    break;
+                    
+                case WBUserDefaults.BrickTypes.BonusPoints:
+                    score += 20
+                    break;
+                    
+                case WBUserDefaults.BrickTypes.SlowDown:
+                    score += 2
+                    ballController.ballSpeed *= 0.75
+                    break;
+                    
+                case WBUserDefaults.BrickTypes.Normal:
+                    score += 1
+                    break;
+                    
+                default:
+                    break;
+                }
             }
         }
         else {
-            // print("hello")
         }
         
         
         WBUserDefaults.bricksStatusAry = ary
-        
+        if ary.flatMap({$0}).filter({ $0.visible }).isEmpty {
+            self.presentControllerWithName("won", context: score)
+            return;
+        }
         let image = WBUserDefaults.breakoutImageOfSize(CGSize(width: 151, height:  80), inSize: CGSize(width: 151, height: screenHeight-25), ballcontroller: self.ballController, add: false)
         //print(WBUserDefaults.bricksStatusAry)
         self.ballGroup.setBackgroundImage(image)
         
         
         totalHitPaddles += 1
-        print (totalHitPaddles / 16)
-        print (((totalHitPaddles / 16)  % 1))
-        print (((totalHitPaddles / 16)  % 1) == 0)
-        if (((totalHitPaddles / 16)  % 1) == 0){
+        //FIXME: What is this code doing, it crashes the app.
+        /*if (((totalHitPaddles / 16)  % 1) == 0){
             WBUserDefaults.bricksStatusAry = WBUserDefaults.randomBreakoutStatusAry
             let image = WBUserDefaults.breakoutImageOfSize(CGSize(width: 151, height:  80), inSize: CGSize(width: 151, height: screenHeight-25), ballcontroller: self.ballController, add: true)
             //print(WBUserDefaults.bricksStatusAry)
             self.ballGroup.setBackgroundImage(image)
-        }
+        }*/
+        
         setTitle("Score: \(score)")
     }
     
